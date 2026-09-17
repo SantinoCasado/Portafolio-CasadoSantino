@@ -1,0 +1,60 @@
+/* Contenedor principal que ocupa toda la pantalla */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilos de la imagen del logo */
+.boot-logo {
+  width: 800px;
+  max-width: 80%;
+  margin-bottom: 5px;
+}
+
+/* Texto brillante al estilo boot screen */
+.loading-text {
+  color: #e0e0e0;
+  font-size: 28px;
+  font-weight: normal;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.4);
+}
+
+progress {
+  width: 400px;
+  height: 25px;
+  -webkit-appearance: none; /* Le quita el estilo por defecto a Chrome/Safari */
+  appearance: none; /* Le quita el estilo por defecto en general */
+  border: 2px solid #333;
+  background-color: #050505;
+  border-radius: 4px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #050505;
+  border-radius: 4px;
+  padding: 1px;
+}
+
+progress::-webkit-progress-value {
+  background: linear-gradient(180deg, #7cfc00 0%, #2e8b57 100%);
+  border-radius: 2px;
+  box-shadow: inset 0px 0px 6px rgba(255, 255, 255, 0.4); /* Brillo interno */
+}
+
+progress::-moz-progress-bar {
+  background: linear-gradient(180deg, #7cfc00 0%, #2e8b57 100%);
+  border-radius: 2px;
+  box-shadow: inset 0px 0px 6px rgba(255, 255, 255, 0.4);
+}

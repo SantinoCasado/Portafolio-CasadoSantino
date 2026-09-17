@@ -1,0 +1,21 @@
+/* Secuencia de animación simulando una carga real */
+@keyframes loadAnimation {
+  0% {
+    width: 0%;
+  }
+  15% {
+    width: 10%;
+  } /* Pausa al principio */
+  30% {
+    width: 15%;
+  }
+  50% {
+    width: 60%;
+  } /* Carga rápida a la mitad */
+  70% {
+    width: 80%;
+  } /* Se frena casi al final */
+  100% {
+    width: 100%;
+  } /* Completa */
+}
