@@ -1,30 +1,27 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-import { LoadingScreenComponent } from './features/loading-screen/loading-screen';
+import { Routes } from '@angular/router';
+import { initialGuard } from './core/guards/initial.guard';
+import { bootGuard } from './core/guards/boot.guard';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { 
     path: '', 
-    component: LoadingScreenComponent // Este se carga de inmediato al entrar a la web
+    loadComponent: () => import('./features/loading-screen/loading-screen').then(m => m.LoadingScreen),
+    canActivate: [initialGuard] // <-- No podés volver acá si ya booteaste
+  },
+  { 
+    path: 'login', 
+    loadComponent: () => import('./features/start-screen/start-screen').then(m => m.StartScreen),
+    canActivate: [bootGuard] // <-- Requiere booteo, bloquea si ya logueaste
   },
   /*
   { 
-    path: 'login', 
-    loadComponent: () => import('./components/login/login.component')
-      .then(m => m.LoginComponent)
-  },
-  { 
     path: 'desktop', 
-    loadComponent: () => import('./components/desktop/desktop.component')
-      .then(m => m.DesktopComponent)
+    loadComponent: () => import('./features/desktop/desktop').then(m => m.DesktopComponent)
   }*/
+  { 
+    path: '**', 
+    redirectTo: '', // Lo patea de nuevo a la pantalla de booteo (loading-screen)
+    pathMatch: 'full' 
+  }
 ];
-
-@NgModule({
-  // Acá está la magia: PreloadAllModules
-  imports: [RouterModule.forRoot(routes, { 
-    preloadingStrategy: PreloadAllModules 
-  })],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }

@@ -3,19 +3,65 @@
   0% {
     width: 0%;
   }
+  5% {
+    width: 5%;
+  }
+  10% {
+    width: 8%;
+  }
   15% {
     width: 10%;
-  } /* Pausa al principio */
+  }
+  20% {
+    width: 10%;
+  }
   30% {
     width: 15%;
+  }
+  40% {
+    width: 20%;
   }
   50% {
     width: 60%;
   } /* Carga rápida a la mitad */
+  60% {
+    width: 65%;
+  }
   70% {
     width: 80%;
   } /* Se frena casi al final */
+  80% {
+    width: 85%;
+  }
   100% {
     width: 100%;
   } /* Completa */
+}
+
+/* Animación de destello para el logo (Flash/Glow) */
+@keyframes flashGlow {
+  0% {
+    opacity: 0;
+    filter: brightness(2) blur(10px); /* Muy brillante y borroso */
+    transform: scale(0.95); /* Un poquito más chico */
+  }
+  40% {
+    opacity: 1;
+    filter: brightness(1.5) blur(2px); /* Aún brilla un poco */
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1) blur(0px); /* Vuelve a su estado normal nítido */
+    transform: scale(1); /* Tamaño original */
+  }
+}
+
+/* Animación de aparición suave para el texto y la barra (Fade In) */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

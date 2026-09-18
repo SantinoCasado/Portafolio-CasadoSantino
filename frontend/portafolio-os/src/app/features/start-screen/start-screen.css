@@ -49,13 +49,12 @@
 
 /* --- CONTENEDOR DE ACCIONES (Mantiene el botón centrado) --- */
 .login-actions-wrapper {
+  position: relative;
   display: flex;
-  flex-direction: row; /* Pone el icono y el botón uno al lado del otro */
-  align-items: center; /* Los alinea perfectamente al medio en altura */
-  justify-content: center; /* Centra todo el bloque bajo tu nombre */
-  gap: 15px; /* Espacio exacto entre el icono y el botón */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin-top: 5px;
-  width: 320px;
 }
 
 /* Botón transparente tipo Aero */
@@ -72,7 +71,6 @@
   gap: 10px;
   transition: all 0.2s;
   backdrop-filter: blur(4px);
-  flex-grow: 1; /* Permite que el botón crezca para ocupar el espacio disponible */
 }
 
 .login-btn:hover {
@@ -86,11 +84,13 @@
 
 /* --- ACCESO DIRECTO DE IDIOMA (Posicionado a la izquierda del botón centrado) --- */
 .desktop-shortcut {
+  position: absolute;
+  right: calc(50% + 120px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60px;
+  width: 76px;
   padding: 5px;
   cursor: pointer;
   border: 1px solid transparent;

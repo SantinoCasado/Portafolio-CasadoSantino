@@ -8,7 +8,7 @@ import { DeviceDetectorService } from '../../utilities/device-detector';
   templateUrl: './loading-screen.html',
   styleUrls: ['./loading-screen.css']
 })
-export class LoadingScreenComponent implements OnInit {
+export class LoadingScreen implements OnInit {
   
   // 1. Convertimos la propiedad en un Signal reactivo
   progressValue = signal(0);
@@ -22,15 +22,21 @@ export class LoadingScreenComponent implements OnInit {
     const isMobile = this.deviceDetector.isMobileDevice();
     localStorage.setItem('isMobile', JSON.stringify(isMobile));
 
-    const interval = setInterval(() => {
-      // 2. Actualizamos el signal sumándole 1 al valor anterior
-      this.progressValue.update(val => val + 1);
+    // Esperamos 2.2 segundos (2200ms) a que termine el FadeIn del CSS
+    setTimeout(() => {
       
-      // 3. Leemos el valor actual del signal usando los paréntesis ()
-      if (this.progressValue() >= 100) {
-        clearInterval(interval);
-        // this.router.navigate(['/login']);
-      }
-    }, 35); 
+      // Recién acá arranca la carga real
+      const interval = setInterval(() => {
+        this.progressValue.update(val => val + 1);
+        
+        if (this.progressValue() >= 100) {
+          clearInterval(interval);
+
+          sessionStorage.setItem('systemBooted', 'true');
+          this.router.navigate(['/login']);
+        }
+      }, 25); // Podés ajustar los milisegundos para que sea más rápida o más lenta
+
+    }, 2200); 
   }
 }

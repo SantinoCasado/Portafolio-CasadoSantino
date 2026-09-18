@@ -1,0 +1,118 @@
+<!-- El contenedor principal usa la imagen de fondo de Windows -->
+<div class="start-screen-container">
+  <div class="login-center">
+    <!-- Tu imagen de usuario -->
+    <img src="logIn-user.png" alt="User Icon" class="user-icon" />
+
+    <!-- Nombre de usuario realista -->
+    <h2 class="user-name">Santino Casado</h2>
+
+    <!-- Texto dinámico -->
+    <p class="welcome-text">
+      {{
+        langService.currentLang() === 'es'
+          ? 'Bienvenido a mi Portafolio'
+          : 'Welcome to my Portfolio'
+      }}
+    </p>
+
+    <!-- CONTENEDOR WRAPPER PARA EL POSICIONAMIENTO ABSOLUTO DEL ACCESO DIRECTO -->
+    <div class="login-actions-wrapper">
+      <!-- ACCESO DIRECTO DE IDIOMA (Flota a la izquierda del botón centrado) -->
+      <div class="desktop-shortcut" (click)="toggleLangModal()">
+        <img src="Earth.ico" alt="Language" class="shortcut-icon" />
+        <span class="shortcut-text">
+          {{ langService.currentLang() === 'es' ? 'Idioma' : 'Language' }}
+        </span>
+      </div>
+
+      <!-- Botón de inicio (Estrictamente centrado) -->
+      <button class="login-btn" (click)="LogIn()">
+        {{ langService.currentLang() === 'es' ? 'Iniciar Sesión' : 'Log In' }}
+        <span class="arrow-icon">➔</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- FORMULARIO 7.CSS PARA EL IDIOMA -->
+  @if (showLangModal()) {
+    <div class="modal-overlay">
+      <div class="window" style="width: 300px">
+        <!-- Barra superior estilo Windows -->
+        <div class="title-bar">
+          <div class="title-bar-text">
+            {{
+              langService.currentLang() === 'es' ? 'Configuración de Idioma' : 'Language Settings'
+            }}
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Close" (click)="toggleLangModal()"></button>
+          </div>
+        </div>
+
+        <!-- Cuerpo del formulario 7.css -->
+        <div class="window-body">
+          <p>
+            {{
+              langService.currentLang() === 'es' ? 'Seleccione un idioma:' : 'Select a language:'
+            }}
+          </p>
+
+          <div class="field-row">
+            <input
+              id="lang-es"
+              type="radio"
+              name="language"
+              [checked]="langService.currentLang() === 'es'"
+              (change)="setLanguage('es')"
+            />
+            <label for="lang-es">{{
+              langService.currentLang() === 'es' ? 'Español' : 'Spanish'
+            }}</label>
+          </div>
+
+          <div class="field-row">
+            <input
+              id="lang-en"
+              type="radio"
+              name="language"
+              [checked]="langService.currentLang() === 'en'"
+              (change)="setLanguage('en')"
+            />
+            <label for="lang-en">{{
+              langService.currentLang() === 'es' ? 'Inglés' : 'English'
+            }}</label>
+          </div>
+
+          <!-- Botón de OK -->
+          <section class="field-row" style="justify-content: flex-end; margin-top: 15px">
+            <button (click)="toggleLangModal()">OK</button>
+          </section>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- MODAL PARA MÓVILES (Control flow de Angular 18) -->
+  @if (showMobileModal()) {
+    <div class="modal-overlay">
+      <div class="modal-box glass-effect">
+        <h3>
+          {{ langService.currentLang() === 'es' ? 'Aviso de Navegación' : 'Navigation Notice' }}
+        </h3>
+
+        <p>
+          {{
+            langService.currentLang() === 'es'
+              ? 'Estás ingresando desde un dispositivo móvil. La experiencia Portafolio OS está optimizada para escritorio, pero podés continuar.'
+              : 'You are entering from a mobile device. The Portfolio OS experience is optimized for desktop, but you can continue.'
+          }}
+        </p>
+
+        <button class="modal-btn" (click)="acceptModal()">
+          {{ langService.currentLang() === 'es' ? 'Continuar' : 'Continue' }}
+        </button>
+      </div>
+    </div>
+  }
+</div>
