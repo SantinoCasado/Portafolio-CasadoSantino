@@ -1,96 +1,43 @@
-.start-screen-container {
+.xp-login-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  /* El fondo azul de Windows 7 */
-  background-image: url('/logIn-background.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: #003399; /* El fondo oscuro de XP (arriba y abajo de la franja) */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Tahoma, 'Segoe UI', sans-serif;
+  overflow: hidden;
   animation: fadeIn 1s ease-in forwards;
 }
 
-/* --- CENTRO DE LOGIN --- */
-.login-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.user-icon {
-  width: 200px;
-  height: 200px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
-  margin-bottom: 10px;
-}
-
-.user-name {
-  color: white;
-  font-size: 26px;
-  font-weight: normal;
-  margin: 5px 0 0 0;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-}
-
-.welcome-text {
-  color: #e0e0e0;
-  font-size: 14px;
-  margin: 5px 0 20px 0;
-}
-
-/* --- CONTENEDOR DE ACCIONES (Mantiene el botón centrado) --- */
-.login-actions-wrapper {
+/* --- ZONA CELESTE (Franja horizontal principal) --- */
+.xp-welcome-banner {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  margin-top: 5px;
-}
-
-/* Botón transparente tipo Aero */
-.login-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: white;
-  padding: 8px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
+  height: 800px;
+  background: linear-gradient(90deg, #5a7edc 0%, #7aa8ff 50%, #5a7edc 100%); /* El tono celeste */
+  border-top: 2px solid #e28822; /* Línea naranja superior */
+  border-bottom: 2px solid #e28822; /* Línea naranja inferior */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
-  gap: 10px;
-  transition: all 0.2s;
-  backdrop-filter: blur(4px);
+  justify-content: center;
+  gap: 80px; /* Separación entre tu logo y el usuario */
 }
 
-.login-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
-}
-
-.arrow-icon {
-  font-size: 14px;
-}
-
-/* --- ACCESO DIRECTO DE IDIOMA (Posicionado a la izquierda del botón centrado) --- */
+/* --- ACCESO DIRECTO DE IDIOMA --- */
 .desktop-shortcut {
   position: absolute;
-  right: calc(50% + 120px);
+  top: 15px; /* Lo pegamos arriba */
+  left: 30px; /* Lo pegamos a la izquierda */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 76px;
+  width: 70px;
   padding: 5px;
   cursor: pointer;
   border: 1px solid transparent;
@@ -101,14 +48,14 @@
 }
 
 .desktop-shortcut:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .shortcut-icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 2px;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 4px;
   filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
 }
 
@@ -116,13 +63,118 @@
   color: white;
   font-size: 11px;
   text-align: center;
-  text-shadow:
-    1px 1px 2px rgba(0, 0, 0, 1),
-    0px 0px 4px rgba(0, 0, 0, 0.8);
-  line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
 }
 
-/* --- MODAL / OVERLAY GENERAL --- */
+/* --- LADO IZQUIERDO (Tu Logo) --- */
+.xp-banner-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end; /* Alinea el texto a la derecha contra la línea divisoria */
+  text-align: right;
+  width: 600px;
+}
+
+.xp-logo {
+  max-width: 500px; /* Ajustá esto según el tamaño de tu imagen */
+  margin-bottom: 10px;
+}
+
+.xp-instruction {
+  font-family: Tahoma, Arial, sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+/* --- LÍNEA DIVISORIA --- */
+.xp-divider {
+  width: 2px;
+  height: 540px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+}
+
+/* --- LADO DERECHO (Usuario) --- */
+.xp-banner-right {
+  display: flex;
+  flex-direction: column; /* Fuerza a que los elementos se apilen uno debajo del otro */
+  justify-content: center;
+  gap: 15px; /* Espaciado perfecto entre ambas tarjetas */
+  width: 400px;
+}
+
+.xp-user-card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  padding: 10px 15px;
+  /* El recuadro azul oscuro con degradado */
+  background: linear-gradient(180deg, #2f5bb7 0%, #1a4291 100%);
+  border: 1px solid #759de8;
+  border-radius: 6px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.xp-user-card:hover {
+  background: linear-gradient(180deg, #3a6cd4 0%, #1e4ca8 100%);
+  border-color: #92b5f9;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.xp-user-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  /* El borde amarillo/naranja clásico de las fotos de XP */
+  border: 2px solid #ffcc00;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+.xp-user-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.xp-user-name {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.xp-user-action {
+  color: #e0eaff;
+  font-size: 14px;
+  margin-top: 2px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+/* Botón verde con flecha estilo XP */
+.xp-arrow-btn {
+  background: linear-gradient(180deg, #7be435 0%, #32cd32 50%, #228b22 100%);
+  border: 1px solid #ffffff;
+  color: white;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* --- OVERLAY PARA MODALES --- */
 .modal-overlay {
   position: absolute;
   top: 0;
@@ -147,48 +199,4 @@
   align-items: center;
   gap: 8px;
   margin: 8px 0;
-}
-
-.field-row label {
-  cursor: pointer;
-  user-select: none;
-}
-
-/* --- MODAL PARA MÓVILES (Estilo Glassmorphism) --- */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.3);
-  padding: 25px;
-  border-radius: 8px;
-  width: 300px;
-  text-align: center;
-  color: white;
-}
-
-.glass-effect h3 {
-  margin-top: 0;
-  font-weight: 600;
-}
-
-.glass-effect p {
-  font-size: 14px;
-  line-height: 1.4;
-  margin-bottom: 20px;
-}
-
-.modal-btn {
-  background: linear-gradient(180deg, #f0f0f0, #e0e0e0);
-  border: 1px solid #999;
-  color: #333;
-  padding: 6px 20px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.modal-btn:hover {
-  background: linear-gradient(180deg, #ffffff, #f0f0f0);
-  border-color: #0078d7;
 }

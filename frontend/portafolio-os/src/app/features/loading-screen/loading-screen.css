@@ -1,194 +1,66 @@
-.start-screen-container {
+.loading-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  /* El fondo azul de Windows 7 */
-  background-image: url('/logIn-background.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #000000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 9999;
+  /* La fuente exacta que usa Windows para su interfaz */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  animation: fadeIn 1s ease-in forwards;
 }
 
-/* --- CENTRO DE LOGIN --- */
-.login-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+/* Ajustamos el tamaño del logo porque ahora no tiene el texto incluido */
+.boot-logo {
+  width: 800px;
+  max-width: 60vw;
+  margin-bottom: 20px; /* Lo acercamos al texto de abajo */
+  opacity: 0;
+  animation: flashGlow 2s ease-out forwards;
 }
 
-.user-icon {
-  width: 200px;
-  height: 200px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
-  margin-bottom: 10px;
+/* --- ESTILO DE LA BARRA CALCADO DE TU IMAGEN --- */
+
+progress {
+  width: 800px; /* Más larga */
+  height: 16px; /* Más finita */
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #444444; /* Borde gris oscuro */
+  border-radius: 12px; /* Bordes completamente redondeados (forma de píldora) */
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in 2.2s forwards;
 }
 
-.user-name {
-  color: white;
-  font-size: 26px;
-  font-weight: normal;
-  margin: 5px 0 0 0;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+/* El "riel" o fondo de la barra */
+progress::-webkit-progress-bar {
+  background-color: #000000;
+  border-radius: 12px;
+  padding: 1px; /* Deja un milímetro para que el relleno no toque el borde */
 }
 
-.welcome-text {
-  color: #e0e0e0;
-  font-size: 14px;
-  margin: 5px 0 20px 0;
+/* El relleno verde brillante */
+progress::-webkit-progress-value {
+  /* Gradiente para darle volumen 3D al verde */
+  background: linear-gradient(180deg, #8afb17 0%, #32cd32 50%, #008000 100%);
+  border-radius: 10px; /* Píldora interior */
+
+  /* Sombra interna para el brillo superior, y sombra externa para el resplandor */
+  box-shadow:
+    inset 0px 1px 3px rgba(255, 255, 255, 0.6),
+    0px 0px 12px rgba(50, 205, 50, 0.8);
 }
 
-/* --- CONTENEDOR DE ACCIONES (Mantiene el botón centrado) --- */
-.login-actions-wrapper {
-  display: flex;
-  flex-direction: row; /* Pone el icono y el botón uno al lado del otro */
-  align-items: center; /* Los alinea perfectamente al medio en altura */
-  justify-content: center; /* Centra todo el bloque bajo tu nombre */
-  gap: 15px; /* Espacio exacto entre el icono y el botón */
-  margin-top: 5px;
-  width: 320px;
-}
-
-/* Botón transparente tipo Aero */
-.login-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: white;
-  padding: 8px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.2s;
-  backdrop-filter: blur(4px);
-  flex-grow: 1; /* Permite que el botón crezca para ocupar el espacio disponible */
-}
-
-.login-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
-}
-
-.arrow-icon {
-  font-size: 14px;
-}
-
-/* --- ACCESO DIRECTO DE IDIOMA (Posicionado a la izquierda del botón centrado) --- */
-.desktop-shortcut {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  padding: 5px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  transition:
-    background-color 0.1s,
-    border 0.1s;
-}
-
-.desktop-shortcut:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.shortcut-icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 2px;
-  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
-}
-
-.shortcut-text {
-  color: white;
-  font-size: 11px;
-  text-align: center;
-  text-shadow:
-    1px 1px 2px rgba(0, 0, 0, 1),
-    0px 0px 4px rgba(0, 0, 0, 0.8);
-  line-height: 1.2;
-}
-
-/* --- MODAL / OVERLAY GENERAL --- */
-.modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-/* --- ESTILOS EXTRA PARA EL FORMULARIO DE 7.CSS --- */
-.window-body {
-  padding: 12px;
-  font-size: 13px;
-}
-
-.field-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 8px 0;
-}
-
-.field-row label {
-  cursor: pointer;
-  user-select: none;
-}
-
-/* --- MODAL PARA MÓVILES (Estilo Glassmorphism) --- */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.3);
-  padding: 25px;
-  border-radius: 8px;
-  width: 300px;
-  text-align: center;
-  color: white;
-}
-
-.glass-effect h3 {
-  margin-top: 0;
-  font-weight: 600;
-}
-
-.glass-effect p {
-  font-size: 14px;
-  line-height: 1.4;
-  margin-bottom: 20px;
-}
-
-.modal-btn {
-  background: linear-gradient(180deg, #f0f0f0, #e0e0e0);
-  border: 1px solid #999;
-  color: #333;
-  padding: 6px 20px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.modal-btn:hover {
-  background: linear-gradient(180deg, #ffffff, #f0f0f0);
-  border-color: #0078d7;
+/* Mismo relleno para Firefox */
+progress::-moz-progress-bar {
+  background: linear-gradient(180deg, #8afb17 0%, #32cd32 50%, #008000 100%);
+  border-radius: 10px;
+  box-shadow:
+    inset 0px 1px 3px rgba(255, 255, 255, 0.6),
+    0px 0px 12px rgba(50, 205, 50, 0.8);
 }

@@ -1,44 +1,66 @@
-<!-- El contenedor principal usa la imagen de fondo de Windows -->
-<div class="start-screen-container">
-  <div class="login-center">
-    <!-- Tu imagen de usuario -->
-    <img src="logIn-user.png" alt="User Icon" class="user-icon" />
+<!-- Fondo general de Windows XP Login -->
+<div class="xp-login-container">
+  <!-- ZONA CELESTE: Franja horizontal característica de XP -->
+  <div class="xp-welcome-banner">
+    <!-- ACCESO DIRECTO IDIOMA (Arriba a la izquierda DENTRO de la franja celeste) -->
+    <div class="desktop-shortcut" (click)="toggleLangModal()">
+      <img src="Earth.ico" alt="Language" class="shortcut-icon" />
+      <span class="shortcut-text">
+        {{ langService.currentLang() === 'es' ? 'Idioma' : 'Language' }}
+      </span>
+    </div>
 
-    <!-- Nombre de usuario realista -->
-    <h2 class="user-name">Santino Casado</h2>
+    <!-- LADO IZQUIERDO: Tu logo del Loading Screen -->
+    <div class="xp-banner-left">
+      <!-- Cambiá el 'src' por el nombre exacto de la imagen de tu logo -->
+      <img src="logo-os.png" alt="Portafolio OS" class="xp-logo" />
 
-    <!-- Texto dinámico -->
-    <p class="welcome-text">
-      {{
-        langService.currentLang() === 'es'
-          ? 'Bienvenido a mi Portafolio'
-          : 'Welcome to my Portfolio'
-      }}
-    </p>
+      <h2 class="xp-instruction">
+        {{
+          langService.currentLang() === 'es'
+            ? 'Para comenzar, haga clic en la flecha del usuario que desea iniciar sesión'
+            : 'To begin, click the arrow next to the user name wishing to enter'
+        }}
+      </h2>
+    </div>
 
-    <!-- CONTENEDOR WRAPPER PARA EL POSICIONAMIENTO ABSOLUTO DEL ACCESO DIRECTO -->
-    <div class="login-actions-wrapper">
-      <!-- ACCESO DIRECTO DE IDIOMA (Flota a la izquierda del botón centrado) -->
-      <div class="desktop-shortcut" (click)="toggleLangModal()">
-        <img src="Earth.ico" alt="Language" class="shortcut-icon" />
-        <span class="shortcut-text">
-          {{ langService.currentLang() === 'es' ? 'Idioma' : 'Language' }}
-        </span>
+    <!-- Línea divisoria vertical brillante -->
+    <div class="xp-divider"></div>
+
+    <!-- LADO DERECHO: Tarjeta de usuario interactiva -->
+    <div class="xp-banner-right">
+      <!-- Tarjeta 1: Santino Casado -->
+      <div class="xp-user-card">
+        <img src="plane-user.jpg" alt="User Icon" class="xp-user-img" />
+        <div class="xp-user-info">
+          <span class="xp-user-name">Santino Casado</span>
+          <span class="xp-user-action">
+            {{ langService.currentLang() === 'es' ? 'Iniciar sesión' : 'Log in' }}
+          </span>
+        </div>
+        <button class="xp-arrow-btn" (click)="LogIn()">➔</button>
       </div>
 
-      <!-- Botón de inicio (Estrictamente centrado) -->
-      <button class="login-btn" (click)="LogIn()">
-        {{ langService.currentLang() === 'es' ? 'Iniciar Sesión' : 'Log In' }}
-        <span class="arrow-icon">➔</span>
-      </button>
+      <!-- Tarjeta 2: Usuario Anónimo -->
+      <div class="xp-user-card">
+        <img src="flower-user.jpg" alt="User Icon" class="xp-user-img" />
+        <div class="xp-user-info">
+          <span class="xp-user-name">
+            {{ langService.currentLang() === 'es' ? 'Usuario Anónimo' : 'Anonymous User' }}
+          </span>
+          <span class="xp-user-action">
+            {{ langService.currentLang() === 'es' ? 'Iniciar sesión' : 'Log in' }}
+          </span>
+        </div>
+        <button class="xp-arrow-btn" (click)="LogIn()">➔</button>
+      </div>
     </div>
   </div>
 
-  <!-- FORMULARIO 7.CSS PARA EL IDIOMA -->
+  <!-- MODAL DE IDIOMA (7.css) -->
   @if (showLangModal()) {
     <div class="modal-overlay">
       <div class="window" style="width: 300px">
-        <!-- Barra superior estilo Windows -->
         <div class="title-bar">
           <div class="title-bar-text">
             {{
@@ -49,15 +71,12 @@
             <button aria-label="Close" (click)="toggleLangModal()"></button>
           </div>
         </div>
-
-        <!-- Cuerpo del formulario 7.css -->
         <div class="window-body">
           <p>
             {{
               langService.currentLang() === 'es' ? 'Seleccione un idioma:' : 'Select a language:'
             }}
           </p>
-
           <div class="field-row">
             <input
               id="lang-es"
@@ -66,11 +85,8 @@
               [checked]="langService.currentLang() === 'es'"
               (change)="setLanguage('es')"
             />
-            <label for="lang-es">{{
-              langService.currentLang() === 'es' ? 'Español' : 'Spanish'
-            }}</label>
+            <label for="lang-es">Español / Spanish</label>
           </div>
-
           <div class="field-row">
             <input
               id="lang-en"
@@ -79,12 +95,8 @@
               [checked]="langService.currentLang() === 'en'"
               (change)="setLanguage('en')"
             />
-            <label for="lang-en">{{
-              langService.currentLang() === 'es' ? 'Inglés' : 'English'
-            }}</label>
+            <label for="lang-en">English</label>
           </div>
-
-          <!-- Botón de OK -->
           <section class="field-row" style="justify-content: flex-end; margin-top: 15px">
             <button (click)="toggleLangModal()">OK</button>
           </section>
@@ -93,25 +105,27 @@
     </div>
   }
 
-  <!-- MODAL PARA MÓVILES (Control flow de Angular 18) -->
+  <!-- MODAL PARA MÓVILES -->
   @if (showMobileModal()) {
     <div class="modal-overlay">
-      <div class="modal-box glass-effect">
-        <h3>
-          {{ langService.currentLang() === 'es' ? 'Aviso de Navegación' : 'Navigation Notice' }}
-        </h3>
-
-        <p>
-          {{
-            langService.currentLang() === 'es'
-              ? 'Estás ingresando desde un dispositivo móvil. La experiencia Portafolio OS está optimizada para escritorio, pero podés continuar.'
-              : 'You are entering from a mobile device. The Portfolio OS experience is optimized for desktop, but you can continue.'
-          }}
-        </p>
-
-        <button class="modal-btn" (click)="acceptModal()">
-          {{ langService.currentLang() === 'es' ? 'Continuar' : 'Continue' }}
-        </button>
+      <div class="window glass-effect" style="width: 320px">
+        <div class="title-bar">
+          <div class="title-bar-text">
+            {{ langService.currentLang() === 'es' ? 'Aviso de Navegación' : 'Navigation Notice' }}
+          </div>
+        </div>
+        <div class="window-body" style="text-align: center; padding: 20px">
+          <p style="margin-bottom: 20px">
+            {{
+              langService.currentLang() === 'es'
+                ? 'Estás ingresando desde un dispositivo móvil. La experiencia está optimizada para escritorio, pero podés continuar.'
+                : 'You are entering from a mobile device. Experience is optimized for desktop, but you can continue.'
+            }}
+          </p>
+          <button (click)="acceptModal()" style="width: 100px">
+            {{ langService.currentLang() === 'es' ? 'Continuar' : 'Continue' }}
+          </button>
+        </div>
       </div>
     </div>
   }
