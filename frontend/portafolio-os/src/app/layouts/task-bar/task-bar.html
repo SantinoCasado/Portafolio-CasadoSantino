@@ -1,0 +1,49 @@
+<div class="xp-taskbar">
+  <!-- BOTÓN DE INICIO VERDE -->
+  <button class="xp-start-btn">
+    <img src="windows-xp.png" alt="Windows Logo" class="xp-start-logo" />
+    <span class="xp-start-text">
+      {{ langService.currentLang() === 'es' ? 'INICIO' : 'START' }}
+    </span>
+  </button>
+
+  <!-- ÁREA CENTRAL DE TAREAS -->
+  <div class="xp-task-area">
+    <!-- Acá aparecerán los botones de las ventanas abiertas -->
+  </div>
+
+  <!-- BANDEJA DEL SISTEMA (Reloj) -->
+  <div class="xp-system-tray">
+    <!-- ACCESO DIRECTO DE IDIOMA -->
+    <div class="tray-lang" (click)="toggleLangModal()" title="Configuración de Idioma">
+      <img src="Earth.ico" alt="Language" class="tray-icon" />
+      <span>{{ langService.currentLang() === 'es' ? 'ES' : 'EN' }}</span>
+    </div>
+
+    <!-- EL RELOJ EN TIEMPO REAL -->
+    <div class="xp-clock" title="Hora actual">
+      {{ currentTime }}
+    </div>
+  </div>
+  <!-- MODAL DE IDIOMA -->
+  @if (showLangModal()) {
+    <div class="xp-lang-modal">
+      <!-- Opción Español -->
+      <div class="xp-lang-option" (click)="setLanguage('es'); toggleLangModal()">
+        <span>Español</span>
+        <!-- Muestra un tilde si es el idioma actual -->
+        @if (langService.currentLang() === 'es') {
+          <span class="check">✔</span>
+        }
+      </div>
+
+      <!-- Opción Inglés -->
+      <div class="xp-lang-option" (click)="setLanguage('en'); toggleLangModal()">
+        <span>English</span>
+        @if (langService.currentLang() === 'en') {
+          <span class="check">✔</span>
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,195 @@
+/* --- BARRA DE TAREAS GENERAL --- */
+.xp-taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px; /* La altura clásica de la barra de XP */
+  background: linear-gradient(
+    to bottom,
+    #245edb 0%,
+    #3f8cf3 9%,
+    #245edb 18%,
+    #245edb 92%,
+    #333 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 9999;
+  font-family: Tahoma, Arial, sans-serif;
+  user-select: none;
+}
+
+/* --- BOTÓN DE INICIO --- */
+.xp-start-btn {
+  height: 100%;
+  padding: 0 16px 0 12px;
+  /* El degradado verde brillante clásico de XP */
+  background: linear-gradient(
+    180deg,
+    #38ae38 0%,
+    #46c746 15%,
+    #289b28 25%,
+    #207a20 85%,
+    #134e13 100%
+  );
+  border: none;
+  /* Borde plano a la izquierda (pegado al margen) y muy redondeado a la derecha */
+  border-radius: 0 15px 15px 0;
+  /* Sombra para separarlo sutilmente de la barra azul */
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre el logo y el texto */
+  cursor: pointer;
+  outline: none;
+  transition: filter 0.1s;
+}
+
+.xp-start-btn:hover {
+  /* Al pasar el mouse, se ilumina un poco más */
+  background: linear-gradient(
+    180deg,
+    #49c449 0%,
+    #58de58 15%,
+    #34b334 25%,
+    #299329 85%,
+    #186618 100%
+  );
+}
+
+.xp-start-btn:active {
+  /* Al hacer clic, se oscurece simulando que se hunde */
+  background: linear-gradient(
+    180deg,
+    #207a20 0%,
+    #289b28 15%,
+    #1b631b 25%,
+    #144b14 85%,
+    #0a290a 100%
+  );
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.xp-start-logo {
+  height: 20px; /* Ajustá esto según el tamaño de tu imagen windows-xp.png */
+  /* Una pequeña sombra blanca detrás del logo hace que resalte más en el verde */
+  filter: drop-shadow(1px 1px 0px rgba(255, 255, 255, 0.3));
+}
+
+.xp-start-text {
+  color: white;
+  font-family: 'Trebuchet MS', Tahoma, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic; /* La clave del botón Start */
+  /* Sombra negra pesada hacia abajo y derecha */
+  text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.8),
+    -1px -1px 0px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2px; /* Alineación óptica con el centro del logo */
+}
+/* --- ÁREA CENTRAL --- */
+.xp-task-area {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+/* --- BANDEJA DEL SISTEMA (System Tray) --- */
+.xp-system-tray {
+  height: 100%;
+  /* El fondo de la bandeja de XP es un celeste más vibrante que el resto de la barra */
+  background: linear-gradient(
+    180deg,
+    #0c59b9 0%,
+    #139ee9 10%,
+    #18b5f9 25%,
+    #139ee9 45%,
+    #0c59b9 100%
+  );
+  /* El borde izquierdo que crea la separación visual */
+  border-left: 1px solid #1042af;
+  box-shadow: inset 1px 0px 0px #40c0fa;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* --- BOTÓN DE IDIOMA EN LA BANDEJA --- */
+.tray-lang {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 4px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.tray-lang:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.tray-icon {
+  width: 16px;
+  height: 16px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.4));
+}
+
+/* --- RELOJ --- */
+.xp-clock {
+  color: white;
+  font-size: 11px;
+  font-weight: normal;
+  cursor: default;
+  /* Pequeña sombra para que los números sean legibles sobre el celeste */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* --- MODAL DE IDIOMA --- */
+.xp-lang-modal {
+  position: absolute;
+  /* Lo subimos 40px para que quede exactamente apoyado sobre la barra nueva */
+  bottom: 40px;
+  right: 15px; /* Alineado a la derecha, cerca de la bandeja del sistema */
+  background-color: #ece9d8; /* El mítico color de fondo de menús de XP */
+  border: 1px solid #716f64;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10000; /* Aseguramos que esté por encima de todo */
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.xp-lang-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 20px 4px 10px;
+  min-width: 120px;
+  font-size: 13px;
+  color: black;
+  cursor: pointer;
+}
+
+/* Efecto hover clásico de menú de Windows */
+.xp-lang-option:hover {
+  background-color: #316ac5; /* Azul brillante de selección */
+  color: white;
+}
+
+.check {
+  font-size: 11px;
+  margin-left: 15px;
+}

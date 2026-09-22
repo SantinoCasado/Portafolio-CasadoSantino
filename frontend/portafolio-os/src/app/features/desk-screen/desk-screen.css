@@ -1,0 +1,25 @@
+.xp-desktop-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  /* El icónico fondo de Windows XP */
+  background-image: url('/desktop-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden; /* Evita barras de scroll molestas */
+  font-family: Tahoma, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.xp-icons-grid {
+  flex-grow: 1; /* Ocupa todo el espacio por encima de la barra de tareas */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 15px;
+}

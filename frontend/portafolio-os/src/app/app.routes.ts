@@ -14,11 +14,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/start-screen/start-screen').then(m => m.StartScreen),
     canActivate: [bootGuard] // <-- Requiere booteo, bloquea si ya logueaste
   },
-  /*
   { 
     path: 'desktop', 
-    loadComponent: () => import('./features/desktop/desktop').then(m => m.DesktopComponent)
-  }*/
+    loadComponent: () => import('./features/desk-screen/desk-screen').then(m => m.DeskScreen),
+    canActivate: [authGuard]
+  },
   { 
     path: '**', 
     redirectTo: '', // Lo patea de nuevo a la pantalla de booteo (loading-screen)
