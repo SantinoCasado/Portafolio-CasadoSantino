@@ -9,9 +9,10 @@ import { LanguageService } from '../../services/language.service';
 })
 export class TaskBar implements OnInit, OnDestroy {
   // Variable para guardar la hora actual
-  currentTime: string = '';
+  currentTime = signal<string>('');
   private timerId: any;
   showLangModal = signal(false);
+  showWindowsModal = signal(false)
 
   // Inyectamos el servicio como PUBLIC para que el HTML pueda leerlo
   constructor(public langService: LanguageService) {}
@@ -33,12 +34,16 @@ export class TaskBar implements OnInit, OnDestroy {
   private updateTime() {
     const now = new Date();
     // Formatea la hora estilo XP (ej: "10:38 AM")
-    this.currentTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    this.currentTime.set(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
   }
 
   // Abre y cierra el formulario viejo
   toggleLangModal() {
     this.showLangModal.set(!this.showLangModal());
+  }
+
+  toggleWindowsModal(){
+    this.showWindowsModal.set(!this.showWindowsModal());
   }
 
   // Establece el idioma cuando eligen una opción en el formulario

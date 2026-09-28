@@ -1,6 +1,29 @@
-<!-- Contenedor principal del escritorio -->
-<div class="xp-desktop-container">
-  <div class="xp-icons-grid"></div>
-  <!-- Tu componente de la barra de tareas anclado abajo -->
+<div class="xp-desktop-container" cdkDropListGroup>
+  <!-- Enlaza las matemáticas de TypeScript directo a los estilos de la grilla -->
+  <div
+    class="xp-icons-grid-system"
+    [style.grid-template-columns]="'repeat(' + columns + ', 85px)'"
+    [style.grid-template-rows]="'repeat(' + rows + ', 85px)'"
+  >
+    @for (slot of desktopGrid; track $index) {
+      <div
+        class="desktop-slot"
+        cdkDropList
+        [cdkDropListData]="slot"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (icon of slot; track icon.id) {
+          <!-- Agrega el LÍMITE DE ARRASTRE para matar el scroll -->
+          <div class="direct-access" cdkDrag cdkDragBoundary=".xp-desktop-container">
+            <img [src]="icon.img" [alt]="icon.id" class="shortcut-icon" />
+            <span class="shortcut-text">
+              {{ langService.currentLang() === 'es' ? icon.nameEs : icon.nameEn }}
+            </span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
   <app-task-bar></app-task-bar>
 </div>
