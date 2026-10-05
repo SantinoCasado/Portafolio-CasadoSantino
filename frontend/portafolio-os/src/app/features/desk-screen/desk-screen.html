@@ -1,5 +1,5 @@
 <div class="xp-desktop-container" cdkDropListGroup>
-  <!-- Enlaza las matemáticas de TypeScript directo a los estilos de la grilla -->
+  <!-- GRILLA DE ÍCONOS -->
   <div
     class="xp-icons-grid-system"
     [style.grid-template-columns]="'repeat(' + columns + ', 85px)'"
@@ -13,8 +13,12 @@
         (cdkDropListDropped)="drop($event)"
       >
         @for (icon of slot; track icon.id) {
-          <!-- Agrega el LÍMITE DE ARRASTRE para matar el scroll -->
-          <div class="direct-access" cdkDrag cdkDragBoundary=".xp-desktop-container">
+          <div
+            class="direct-access"
+            cdkDrag
+            cdkDragBoundary=".xp-desktop-container"
+            (dblclick)="openApp(icon.id)"
+          >
             <img [src]="icon.img" [alt]="icon.id" class="shortcut-icon" />
             <span class="shortcut-text">
               {{ langService.currentLang() === 'es' ? icon.nameEs : icon.nameEn }}
@@ -25,5 +29,16 @@
     }
   </div>
 
+  @if (isStackAdminOpen && !isStackAdminMinimized) {
+    <app-stack-adm
+      class="draggable-window-container"
+      cdkDrag
+      (minimize)="handleStackAdminMinimize()"
+      (close)="handleStackAdminClose()"
+    >
+    </app-stack-adm>
+  }
+
+  <!-- BARRA DE TAREAS -->
   <app-task-bar></app-task-bar>
 </div>

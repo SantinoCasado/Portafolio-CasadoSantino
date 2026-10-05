@@ -1,0 +1,391 @@
+[
+  {
+    "categoryName": ["Lenguajes de programación", "Programming Languages"],
+    "expanded": true,
+    "items": [
+      {
+        "id": "python",
+        "name": "Python",
+        "icon": "🐍",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Lenguaje principal para el desarrollo backend y análisis de datos. Lo utilizo intensivamente para crear APIs, procesar información con Pandas y NumPy, y apuntar mi carrera hacia el Data Science.",
+            "Main language for backend development and data analysis. I use it intensively to create APIs, process information with Pandas and NumPy, and aim my career towards Data Science."],
+        "knowledge": 70,
+        "usagePercentage": 70
+      },
+      {
+        "id": "GitBash",
+        "name": "GitBash",
+        "icon": "⌨️",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Entorno de línea de comandos para gestionar versiones de código y automatizar tareas de desarrollo.",
+            "Command-line environment for managing code versions and automating development tasks."
+        ],
+        "knowledge": 60,
+        "usagePercentage": 35
+      },
+      {
+        "id": "java",
+        "name": "Java",
+        "icon": "☕",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Herramienta fundamental para el desarrollo de software de escritorio robusto. Aplico fuertemente Programación Orientada a Objetos (POO), manejo de persistencia JSON e interfaces con JavaFX y Scene Builder.",
+            "Fundamental tool for developing robust desktop software. I apply Object-Oriented Programming (OOP) strongly, handle JSON persistence, and create interfaces with JavaFX and Scene Builder."
+        ],
+        "knowledge": 45,
+        "usagePercentage": 35
+      },
+      {
+        "id": "javascript",
+        "name": "JavaScript",
+        "icon": "📜",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Lenguaje de programación fundamental para el desarrollo web. Lo utilizo para crear interacciones dinámicas en el frontend y para el desarrollo del backend con Node.js.",
+            "Fundamental programming language for web development. I use it to create dynamic interactions in the frontend and develop the backend with Node.js."
+        ],
+        "knowledge": 80,
+        "usagePercentage": 85
+      },
+      {
+        "id": "html/css",
+        "name": "HTML / CSS",
+        "icon": "🌐",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Lenguajes fundamentales para el desarrollo web. Utilizo HTML para estructurar el contenido y CSS para diseñar la apariencia y el comportamiento de las páginas web.",
+            "Fundamental languages for web development. I use HTML to structure content and CSS to design the appearance and behavior of web pages."
+        ],
+        "knowledge": 90,
+        "usagePercentage": 85
+      },
+      {
+        "id": "ts",
+        "name": "TypeScript / JavaScript",
+        "icon": "📜",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "La base de todo mi desarrollo web full-stack. Me permite tipar de forma estricta el código en Angular y NestJS, asegurando un ecosistema libre de errores y altamente escalable.",
+            "The foundation of all my full-stack web development. It allows me to strictly type code in Angular and NestJS, ensuring a error-free and highly scalable ecosystem."
+        ],
+        "knowledge": 80,
+        "usagePercentage": 85
+      }
+    ]
+  },
+  {
+    "categoryName": ["Herramientas de desarrollo", "Development Tools"],
+    "expanded": true,
+    "items": [
+      {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "icon": "🖥️",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Editor de código fuente altamente personalizable y extensible que utilizo para escribir, depurar y administrar mi código de manera eficiente.",
+            "Highly customizable and extensible source code editor that I use to write, debug, and manage my code efficiently."
+        ],
+        "knowledge": 90,
+        "usagePercentage": 95
+      },
+      {
+        "id": "netBeans",
+        "name": "NetBeans",
+        "icon": "🖥️",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Entorno de desarrollo integrado que utilizo para crear aplicaciones Java y otros proyectos.",
+            "Integrated development environment used to create Java applications and other projects."
+        ],
+        "knowledge": 70,
+        "usagePercentage": 60
+      },
+      {
+        "id": "postman",
+        "name": "Postman",
+        "icon": "📬",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Herramienta esencial para probar y documentar APIs. La utilizo para enviar solicitudes HTTP, verificar respuestas y automatizar pruebas de mis servicios web.",
+            "Essential tool for testing and documenting APIs. I use it to send HTTP requests, verify responses, and automate tests for my web services."
+        ],
+        "knowledge": 80,
+        "usagePercentage": 70
+      },
+      {
+        "id": "docker",
+        "name": "Docker",
+        "icon": "🐳",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Plataforma de contenedores que utilizo para empaquetar aplicaciones y sus dependencias, asegurando consistencia en diferentes entornos de desarrollo y producción.",
+            "Container platform I use to package applications and their dependencies, ensuring consistency across different development and production environments."
+        ],
+        "knowledge": 20,
+        "usagePercentage": 10
+      }
+    ]
+  },
+  {
+    "categoryName": ["Control de versiones", "Version Control"],
+    "expanded": true,
+    "items": [
+      {
+        "id": "git",
+        "name": "Git",
+        "icon": "🔧",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Sistema de control de versiones distribuido que utilizo para gestionar y colaborar en proyectos de desarrollo de software.",
+            "Distributed version control system I use to manage and collaborate on software development projects."
+        ],
+        "knowledge": 80,
+        "usagePercentage": 90
+      },
+      {
+        "id": "github",
+        "name": "GitHub",
+        "icon": "🐙",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Plataforma de alojamiento de código fuente que utilizo para colaborar en proyectos, gestionar repositorios y realizar revisiones de código.",
+            "Source code hosting platform I use to collaborate on projects, manage repositories, and perform code reviews."
+        ],
+        "knowledge": 80,
+        "usagePercentage": 90
+      }
+    ]
+  },
+  {
+    "categoryName": ["Bases de datos & Cloud", "Databases & Cloud"],
+    "expanded": true,
+    "items": [
+      {
+        "id": "mysql",
+        "name": "MySQL & PostgreSQL",
+        "icon": "🐬",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Motores relacionales donde diseño esquemas estructurados, manejo de relaciones complejas y consultas optimizadas para mis sistemas de gestión.",
+            "Relational engines where I design structured schemas, manage complex relationships, and optimize queries for my management systems."
+        ],
+        "knowledge": 80,
+        "usagePercentage": 60
+      },
+      {
+        "id": "sqlite",
+        "name": "SQLite",
+        "icon": "🗄️",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Base de datos relacional ligera y de fácil implementación.",
+            "Lightweight relational database and easy implementation."
+        ],
+        "knowledge": 75,
+        "usagePercentage": 20
+      },
+      {
+        "id": "mongodb",
+        "name": "MongoDB",
+        "icon": "🍃",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Base de datos NoSQL donde almaceno y gestiono datos estructurados y no estructurados de forma flexible y escalable.",
+            "NoSQL database where I store and manage structured and unstructured data in a flexible and scalable manner."
+        ],
+        "knowledge": 70,
+        "usagePercentage": 40
+      },
+      {
+        "id": "supabase",
+        "name": "Supabase",
+        "icon": "⚡",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Plataforma de desarrollo backend de código abierto que funciona como un servicio (BaaS o Backend-as-a-Service). La utilizo para crear aplicaciones web y móviles con autenticación, bases de datos y almacenamiento en tiempo real.",
+            "Open-source backend development platform that works as a service (BaaS or Backend-as-a-Service). I use it to create web and mobile applications with authentication, databases, and real-time storage."
+        ],
+        "knowledge": 70,
+        "usagePercentage": 65
+      },
+      {
+        "id": "firebase",
+        "name": "Firebase",
+        "icon": "⚡",
+        "status": ["Funcionando correctamente", "Working properly"],
+        "description": [
+            "Plataforma de desarrollo backend de código abierto que funciona como un servicio (BaaS o Backend-as-a-Service). La utilizo para crear aplicaciones web y móviles con autenticación, bases de datos y almacenamiento en tiempo real.",
+            "Open-source backend development platform that works as a service (BaaS or Backend-as-a-Service). I use it to create web and mobile applications with authentication, databases, and real-time storage."
+        ],
+        "knowledge": 45,
+        "usagePercentage": 25
+      }
+    ]
+  },
+  {
+    "categoryName": ["Frameworks y Librerías", "Frameworks and Libraries"],
+    "expanded": true,
+    "items": [
+        {
+            "id": "angular",
+            "name": "Angular",
+            "icon": "🅰️",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Framework de desarrollo web de código abierto mantenido por Google. Lo utilizo para crear aplicaciones web dinámicas y de alto rendimiento.",
+                "Open-source web development framework maintained by Google. I use it to create dynamic web applications and high-performance systems."
+            ],
+            "knowledge": 80,
+            "usagePercentage": 90
+        },
+        {
+            "id": "nestjs",
+            "name": "NestJS",
+            "icon": "🅽",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Framework de desarrollo backend basado en Node.js y TypeScript. Lo utilizo para crear APIs RESTful y GraphQL escalables y mantenibles.",
+                "Backend development framework based on Node.js and TypeScript. I use it to create scalable and maintainable RESTful and GraphQL APIs."
+            ],
+            "knowledge": 70,
+            "usagePercentage": 50
+        },
+        {
+            "id": "django",
+            "name": "Django",
+            "icon": "🐴",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Framework de desarrollo web en Python. Lo utilizo para crear aplicaciones web robustas y seguras.",
+                "Python web development framework. I use it to create robust and secure web applications."
+            ],
+            "knowledge": 35,
+            "usagePercentage": 10
+        },
+        {
+            "id": "flask",
+            "name": "Flask",
+            "icon": "🧪",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Microframework de desarrollo web en Python. Lo utilizo para crear aplicaciones web ligeras y rápidas.",
+                "Python micro web development framework. I use it to create lightweight and fast web applications."
+            ],
+            "knowledge": 25,
+            "usagePercentage": 5
+        },
+        {
+            "id": "bootstrap",
+            "name": "Bootstrap",
+            "icon": "🅱️",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Framework de diseño web que utilizo para crear interfaces de usuario atractivas y responsivas.",
+                "Web design framework I use to create attractive and responsive user interfaces."
+            ],
+            "knowledge": 70,
+            "usagePercentage": 80
+        },
+        {
+            "id": "pandas",
+            "name": "Pandas",
+            "icon": "🐼",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Librería de análisis y manipulación de datos en Python.",
+                "Data analysis and manipulation library in Python."
+            ],
+            "knowledge": 65,
+            "usagePercentage": 15
+        },
+        {
+            "id": "numpy",
+            "name": "NumPy",
+            "icon": "🔢",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Librería de computación numérica en Python.",
+                "Numerical computing library in Python."
+            ],
+            "knowledge": 70,
+            "usagePercentage": 15
+        },
+        {
+            "id": "matplotlib",
+            "name": "Matplotlib",
+            "icon": "📊",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Librería de visualización de datos en Python.",
+                "Data visualization library in Python."
+            ],
+            "knowledge": 50,
+            "usagePercentage": 5
+        },
+        {
+            "id": "folium",
+            "name": "Folium",
+            "icon": "🗺️",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Librería de visualización de datos geoespaciales en Python.",
+                "Geospatial data visualization library in Python."
+            ],
+            "knowledge": 35,
+            "usagePercentage": 5
+        },
+        {
+            "id": "tkinter",
+            "name": "Tkinter",
+            "icon": "🖼️",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Librería de desarrollo de interfaces gráficas en Python.",
+                "Python GUI development library."
+            ],
+            "knowledge": 35,
+            "usagePercentage": 5
+        },
+        {
+            "id": "kivy",
+            "name": "Kivy",
+            "icon": "🖼️",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Librería de desarrollo de interfaces gráficas en Python.",
+                "Python GUI development library."
+            ],
+            "knowledge": 55,
+            "usagePercentage": 5
+        },
+        {
+            "id": "javafx",
+            "name": "JavaFX",
+            "icon": "🎨",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Librería de desarrollo de interfaces gráficas en Java.",
+                "Java GUI development library."
+            ],
+            "knowledge": 60,
+            "usagePercentage": 20
+        },
+        {
+            "id": "sceneBuilder",
+            "name": "Scene Builder",
+            "icon": "🎨",
+            "status": ["Funcionando correctamente", "Working properly"],
+            "description": [
+                "Herramienta de diseño de interfaces gráficas para JavaFX.",
+                "JavaFX GUI design tool."
+            ],
+            "knowledge": 65,
+            "usagePercentage": 20
+        }
+    ]
+  }
+]

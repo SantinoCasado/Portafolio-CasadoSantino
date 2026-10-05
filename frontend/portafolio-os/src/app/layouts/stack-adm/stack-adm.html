@@ -1,0 +1,100 @@
+<button class="xp-btn-min" (click)="onMinimize()">_</button>
+<button class="xp-btn-max" (click)="toggleMaximize()">□</button>
+<button class="xp-btn-close" (click)="onClose()">X</button>
+<!-- PANEL IZQUIERDO: El Árbol que se despliega -->
+<div class="tree-panel">
+  @for (category of stackData; track category.categoryName) {
+    <div class="tree-category">
+      <!-- Título de la carpeta (El click invierte el estado de expanded) -->
+      <div class="category-header" (click)="toggleCategory(category)">
+        <span class="tree-toggle">{{ category.expanded ? '-' : '+' }}</span>
+        <img src="Folder.ico" class="folder-icon" alt="folder" />
+        <span class="category-name">{{ category.categoryName[langIndex] }}</span>
+      </div>
+
+      <!-- Elementos de la carpeta (Se extienden hacia abajo si expanded es true) -->
+      @if (category.expanded) {
+        <div class="category-items">
+          @for (item of category.items; track item.id) {
+            <div
+              class="tree-item"
+              [class.selected]="selectedItem?.id === item.id"
+              (click)="selectItem(item)"
+            >
+              <div class="item-left">
+                <span class="item-icon">{{ item.icon }}</span>
+                <span class="item-name">{{ item.name }}</span>
+              </div>
+              <div class="item-right">
+                <span class="item-status">{{ item.status[langIndex] }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>
+<!-- PANEL DERECHO: Los Detalles -->
+<div class="details-panel">
+  @if (selectedItem; as selected) {
+    <div class="detail-content">
+      <div class="detail-header">
+        <span class="detail-icon-large">{{ selected.icon }}</span>
+        <h2 class="detail-title">{{ selected.name }}</h2>
+      </div>
+
+      <div class="detail-divider"></div>
+
+      <div class="detail-info">
+        <p>
+          <strong>{{ langIndex === 0 ? 'Estado del sistema:' : 'System status:' }}</strong>
+          <span class="status-ok">{{ selected.status[langIndex] }}</span>
+        </p>
+      </div>
+
+      <div class="detail-description">
+        {{ selected.description[langIndex] }}
+      </div>
+
+      <!-- Barra de Conocimiento -->
+      <div class="usage-section">
+        <p class="usage-label">
+          {{ langIndex === 0 ? 'Nivel de conocimiento' : 'Knowledge level' }} ({{
+            selected.knowledge
+          }}%)
+        </p>
+        <div class="xp-progress-bar-container">
+          <div
+            class="xp-progress-bar-fill knowledge-bar"
+            [style.width.%]="selected.knowledge"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Barra de Uso -->
+      <div class="usage-section">
+        <p class="usage-label">
+          {{ langIndex === 0 ? 'Uso en proyectos' : 'Project usage' }} ({{
+            selected.usagePercentage
+          }}%)
+        </p>
+        <div class="xp-progress-bar-container">
+          <div class="xp-progress-bar-fill" [style.width.%]="selected.usagePercentage"></div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <!-- Estado inicial si no hay nada seleccionado -->
+    <div class="empty-state">
+      <img src="Computer.ico" alt="PC" class="empty-icon" />
+      <p>
+        {{
+          langIndex === 0
+            ? 'Seleccione un elemento del panel izquierdo para ver sus propiedades e impacto en el sistema.'
+            : 'Select an item from the left panel to view its properties and system impact.'
+        }}
+      </p>
+    </div>
+  }
+</div>

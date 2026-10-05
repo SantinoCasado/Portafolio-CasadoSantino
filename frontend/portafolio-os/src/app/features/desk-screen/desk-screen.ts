@@ -2,11 +2,12 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { TaskBar } from '../../layouts/task-bar/task-bar';
 import { CdkDrag, CdkDropList, CdkDropListGroup, CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
+import { StackAdm } from '../../layouts/stack-adm/stack-adm';
 
 @Component({
   selector: 'app-desk-screen',
   standalone: true,
-  imports: [TaskBar, CdkDrag, CdkDropList, CdkDropListGroup], 
+  imports: [TaskBar, StackAdm, CdkDrag, CdkDropList, CdkDropListGroup], 
   templateUrl: './desk-screen.html',
   styleUrl: './desk-screen.css',
 })
@@ -23,6 +24,10 @@ export class DeskScreen implements OnInit {
 
   // Grilla que alojara los íconos
   desktopGrid: any[][] = [];
+
+  // Estados de administración de ventanas
+  isStackAdminOpen = false;
+  isStackAdminMinimized = false;
 
   // Guardado de iconos originales
   private myIcons = [
@@ -118,5 +123,29 @@ export class DeskScreen implements OnInit {
       event.previousIndex,
       event.currentIndex,
     );
+  }
+
+  // ---------------- LOGICA ADMINISTRACION DE STACK ----------------
+  openApp(appId: string) {
+    if (appId === 'stack') {
+      this.openStackAdmin();
+    }
+  }
+  // Cuando hace doble clic en el ícono del escritorio:
+  openStackAdmin() {
+    this.isStackAdminOpen = true;
+    this.isStackAdminMinimized = false; // Si estaba minimizado, lo trae al frente
+  }
+
+  // Cuando el hijo emite el evento de minimizar:
+  handleStackAdminMinimize() {
+    this.isStackAdminMinimized = true;
+    // Acá le pasarías el dato a la TaskBar para que dibuje el botoncito
+  }
+
+  // Cuando el hijo emite el evento de cerrar:
+  handleStackAdminClose() {
+    this.isStackAdminOpen = false; // Angular destruye el componente de la memoria
+    this.isStackAdminMinimized = false;
   }
 }
