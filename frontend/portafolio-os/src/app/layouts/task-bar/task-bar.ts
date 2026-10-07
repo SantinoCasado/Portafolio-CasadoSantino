@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
-import { LanguageService } from '../../services/language.service'; 
+import { Component, OnInit, OnDestroy, signal, Input, Output, EventEmitter } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
+import { AppProcess } from '../../features/desk-screen/interfaces/AppProcess'; 
 
 @Component({
   selector: 'app-task-bar',
@@ -13,6 +14,18 @@ export class TaskBar implements OnInit, OnDestroy {
   private timerId: any;
   showLangModal = signal(false);
   showWindowsModal = signal(false)
+
+  // Recibe del escritorio si el admin está abierto o minimizado
+  @Input() isStackOpen = false;
+  @Input() isStackMinimized = false;
+  // Recibe la lista de TODAS las ventanas abiertas
+  @Input() activeApps: AppProcess[] = [];
+
+
+  // Le avisa al escritorio que hicieron clic en el botón
+  @Output() stackAppClick = new EventEmitter<void>();
+  // Emite el ID de la app que el usuario clickeó en la barra
+  @Output() appClick = new EventEmitter<string>();
 
   // Inyectamos el servicio como PUBLIC para que el HTML pueda leerlo
   constructor(public langService: LanguageService) {}

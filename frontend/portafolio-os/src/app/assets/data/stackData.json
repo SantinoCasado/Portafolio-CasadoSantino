@@ -1,6 +1,7 @@
 [
   {
     "categoryName": ["Lenguajes de programación", "Programming Languages"],
+    "icon": "💻",
     "expanded": true,
     "items": [
       {
@@ -78,6 +79,7 @@
   },
   {
     "categoryName": ["Herramientas de desarrollo", "Development Tools"],
+    "icon": "🖥️",
     "expanded": true,
     "items": [
       {
@@ -132,6 +134,7 @@
   },
   {
     "categoryName": ["Control de versiones", "Version Control"],
+    "icon": "🔧",
     "expanded": true,
     "items": [
       {
@@ -162,6 +165,7 @@
   },
   {
     "categoryName": ["Bases de datos & Cloud", "Databases & Cloud"],
+    "icon": "☁️",
     "expanded": true,
     "items": [
       {
@@ -228,6 +232,7 @@
   },
   {
     "categoryName": ["Frameworks y Librerías", "Frameworks and Libraries"],
+    "icon": "🧩",
     "expanded": true,
     "items": [
         {

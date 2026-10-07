@@ -1,13 +1,14 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../services/language.service';
 import stackData from '../../assets/data/stackData.json';
 import { TechCategory } from './interfaces/techCategory';
 import { TechItem } from './interfaces/TechItem';
+import { CdkDrag, CdkDragHandle } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-stack-adm',
-  imports: [CommonModule],
+  imports: [CommonModule, CdkDrag, CdkDragHandle],
   templateUrl: './stack-adm.html',
   styleUrl: './stack-adm.css',
 })
@@ -38,7 +39,7 @@ export class StackAdm {
 
   selectItem(item: TechItem) {
     this.selectedItem = item;
-    console.log("Ítem seleccionado:", item);
+    console.log('Lenguaje seleccionado:', this.selectedItem);
   }
 
   toggleMaximize() {

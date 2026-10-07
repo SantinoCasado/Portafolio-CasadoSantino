@@ -3,6 +3,7 @@ import { LanguageService } from '../../services/language.service';
 import { TaskBar } from '../../layouts/task-bar/task-bar';
 import { CdkDrag, CdkDropList, CdkDropListGroup, CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { StackAdm } from '../../layouts/stack-adm/stack-adm';
+import { AppProcess } from './interfaces/AppProcess';
 
 @Component({
   selector: 'app-desk-screen',
@@ -25,9 +26,8 @@ export class DeskScreen implements OnInit {
   // Grilla que alojara los íconos
   desktopGrid: any[][] = [];
 
-  // Estados de administración de ventanas
-  isStackAdminOpen = false;
-  isStackAdminMinimized = false;
+  // Lista de procesos abiertos (para la barra de tareas)
+  runningApps: AppProcess[] = [];
 
   // Guardado de iconos originales
   private myIcons = [
@@ -127,25 +127,51 @@ export class DeskScreen implements OnInit {
 
   // ---------------- LOGICA ADMINISTRACION DE STACK ----------------
   openApp(appId: string) {
+    // Verifica si la app ya está abierta
+    const existingApp = this.runningApps.find(app => app.id === appId);
+    
+    if (existingApp) {
+      // Si ya está abierta, la trae al frente (la desminimiza)
+      existingApp.isMinimized = false;
+      return;
+    }
+
+    // Si NO está abierta, la "lanza" agregándola a la memoria
     if (appId === 'stack') {
-      this.openStackAdmin();
+      this.runningApps.push({
+        id: 'stack',
+        title: 'Administrador de Stack',
+        icon: 'assets/List File.ico',
+        isMinimized: false
+      });
     }
   }
-  // Cuando hace doble clic en el ícono del escritorio:
-  openStackAdmin() {
-    this.isStackAdminOpen = true;
-    this.isStackAdminMinimized = false; // Si estaba minimizado, lo trae al frente
+
+  // Funciones auxiliares para el HTML
+  isAppOpen(appId: string): boolean {
+    return this.runningApps.some(app => app.id === appId);
   }
 
-  // Cuando el hijo emite el evento de minimizar:
-  handleStackAdminMinimize() {
-    this.isStackAdminMinimized = true;
-    // Acá le pasarías el dato a la TaskBar para que dibuje el botoncito
+  isAppMinimized(appId: string): boolean {
+    const app = this.runningApps.find(a => a.id === appId);
+    return app ? app.isMinimized : false;
   }
 
-  // Cuando el hijo emite el evento de cerrar:
-  handleStackAdminClose() {
-    this.isStackAdminOpen = false; // Angular destruye el componente de la memoria
-    this.isStackAdminMinimized = false;
+  // Funciones que llaman los botones de las ventanas
+  minimizeApp(appId: string) {
+    const app = this.runningApps.find(a => a.id === appId);
+    if (app) app.isMinimized = true;
+  }
+
+  closeApp(appId: string) {
+    // Filtra el arreglo para "matar" el proceso
+    this.runningApps = this.runningApps.filter(app => app.id !== appId);
+  }
+
+  toggleAppFromTaskbar(appId: string) {
+    const app = this.runningApps.find(a => a.id === appId);
+    if (app) {
+      app.isMinimized = !app.isMinimized;
+    }
   }
 }

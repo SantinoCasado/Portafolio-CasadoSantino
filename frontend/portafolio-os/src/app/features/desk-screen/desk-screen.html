@@ -29,16 +29,16 @@
     }
   </div>
 
-  @if (isStackAdminOpen && !isStackAdminMinimized) {
+  @if (isAppOpen('stack') && !isAppMinimized('stack')) {
     <app-stack-adm
       class="draggable-window-container"
-      cdkDrag
-      (minimize)="handleStackAdminMinimize()"
-      (close)="handleStackAdminClose()"
+      (minimize)="minimizeApp('stack')"
+      (close)="closeApp('stack')"
     >
     </app-stack-adm>
   }
 
   <!-- BARRA DE TAREAS -->
-  <app-task-bar></app-task-bar>
+  <app-task-bar [activeApps]="runningApps" (appClick)="toggleAppFromTaskbar($event)">
+  </app-task-bar>
 </div>

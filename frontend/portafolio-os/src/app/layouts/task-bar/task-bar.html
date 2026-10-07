@@ -7,9 +7,18 @@
     </span>
   </button>
 
-  <!-- ÁREA CENTRAL DE TAREAS -->
+  <!-- ÁREA CENTRAL DE TAREAS (AHORA ES DINÁMICA) -->
   <div class="xp-task-area">
-    <!-- Acá aparecerán los botones de las ventanas abiertas -->
+    @for (app of activeApps; track app.id) {
+      <div
+        class="taskbar-app-btn"
+        [class.active]="!app.isMinimized"
+        (click)="appClick.emit(app.id)"
+      >
+        <img [src]="app.icon" class="taskbar-icon" />
+        <span class="taskbar-text">{{ app.title }}</span>
+      </div>
+    }
   </div>
 
   <!-- BANDEJA DEL SISTEMA (Reloj) -->
@@ -25,6 +34,7 @@
       {{ currentTime() }}
     </div>
   </div>
+
   <!-- MODAL DE IDIOMA -->
   @if (showLangModal()) {
     <div class="xp-lang-modal">
