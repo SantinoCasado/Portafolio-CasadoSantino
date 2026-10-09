@@ -1,0 +1,198 @@
+/* Ventana principal */
+.xp-window {
+  position: absolute;
+  top: 90px;
+  left: 180px;
+  width: clamp(500px, 60vw, 800px);
+  height: clamp(400px, 70vh, 600px);
+  background-color: #ece9d8;
+  border: 3px solid #0055e5;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Tahoma, 'Segoe UI', sans-serif;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  z-index: 55;
+}
+
+.xp-window.maximized {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: calc(100vh - 40px) !important;
+  max-height: none !important;
+  transform: none !important;
+  border-radius: 0;
+  z-index: 999;
+}
+
+/* Barra de Título */
+.xp-title-bar {
+  background: linear-gradient(
+    180deg,
+    #0058e6 0%,
+    #3a93ff 8%,
+    #288eff 40%,
+    #127dff 88%,
+    #036bfe 100%
+  );
+  padding: 3px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: grab;
+}
+.xp-title-bar:active {
+  cursor: grabbing;
+}
+
+/* Menú Clásico */
+.outlook-menu-bar {
+  background-color: #ece9d8;
+  padding: 2px 5px;
+  border-bottom: 1px solid #aca899;
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+  color: #000;
+}
+.outlook-menu-bar span {
+  padding: 2px 4px;
+  cursor: default;
+}
+.outlook-menu-bar span:hover {
+  background-color: #316ac5;
+  color: white;
+}
+
+/* Barra de Herramientas (Botón Enviar) */
+.outlook-toolbar {
+  background-color: #ece9d8;
+  border-bottom: 1px solid #aca899;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.toolbar-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 3px 8px;
+  color: #000;
+  font-family: Tahoma;
+  font-size: 11px;
+}
+.toolbar-btn:hover:not(.disabled) {
+  border: 1px solid #aca899;
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: inset 1px 1px 2px #fff;
+}
+.toolbar-btn.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.btn-icon {
+  font-size: 24px;
+  margin-bottom: 2px;
+}
+.toolbar-separator {
+  width: 1px;
+  height: 35px;
+  background-color: #aca899;
+  box-shadow: 1px 0 #fff;
+  margin: 0 5px;
+}
+
+/* Campos de Asunto y Para */
+.outlook-header-fields {
+  background-color: #ece9d8;
+  padding: 10px;
+  border-bottom: 1px solid #aca899;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field-row {
+  display: flex;
+  align-items: center;
+}
+.field-row label {
+  width: 60px;
+  font-size: 12px;
+  color: #000;
+}
+.field-row input {
+  flex-grow: 1;
+  border: 1px solid #7f9db9;
+  padding: 3px 5px;
+  font-family: Tahoma;
+  font-size: 12px;
+}
+.readonly-input {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+/* Cuerpo del correo */
+.outlook-body {
+  flex-grow: 1;
+  display: flex;
+  padding: 2px;
+  background-color: #ece9d8;
+}
+.outlook-body textarea {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #7f9db9;
+  padding: 10px;
+  resize: none;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  outline: none;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.attachments-row {
+  align-items: flex-start !important;
+}
+
+.attachments-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  flex-grow: 1;
+}
+
+.attachment-chip {
+  background-color: #f1f1f1;
+  border: 1px solid #7f9db9;
+  padding: 2px 6px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 2px;
+}
+
+.remove-attachment {
+  background: transparent;
+  border: none;
+  color: #cc0000;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  line-height: 1;
+}
+
+.remove-attachment:hover {
+  color: #ff0000;
+}

@@ -25,7 +25,7 @@
   width: 100vw !important; /* 100% del ancho */
   height: calc(100vh - 40px) !important; /* 100% del alto MENOS tu barra de tareas */
   max-height: none !important; /* Anula el clamp anterior */
-  transform: none !important; /* CLAVE: Anula la posición en la que la dejaste arrastrada */
+  transform: none !important;
   border-radius: 0;
   z-index: 999;
 }

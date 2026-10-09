@@ -1,1 +1,102 @@
-<p>contact works!</p>
+<div
+  class="xp-window outlook-window"
+  [class.maximized]="isMaximized"
+  cdkDrag
+  cdkDragBoundary=".xp-desktop-container"
+>
+  <!-- Barra de Título -->
+  <div class="xp-title-bar" cdkDragHandle>
+    <div class="xp-title-text">
+      <!-- Podés usar un ícono de sobrecito -->
+      ✉️
+      {{
+        langService.currentLang() === 'es'
+          ? 'Redactar Correo - Santino Casado'
+          : 'New Message - Santino Casado'
+      }}
+    </div>
+    <div class="xp-title-buttons">
+      <button class="xp-btn-min" (click)="onMinimize()">_</button>
+      <button class="xp-btn-max" (click)="toggleMaximize()">□</button>
+      <button class="xp-btn-close" (click)="onClose()">X</button>
+    </div>
+  </div>
+
+  <!-- Barra de Menú Clásica -->
+  <div class="outlook-menu-bar">
+    <span>{{ langService.currentLang() === 'es' ? 'Archivo' : 'File' }}</span>
+    <span>{{ langService.currentLang() === 'es' ? 'Edición' : 'Edit' }}</span>
+    <span>{{ langService.currentLang() === 'es' ? 'Ver' : 'View' }}</span>
+    <span>{{ langService.currentLang() === 'es' ? 'Insertar' : 'Insert' }}</span>
+    <span>{{ langService.currentLang() === 'es' ? 'Formato' : 'Format' }}</span>
+  </div>
+
+  <!-- Barra de Herramientas -->
+  <div class="outlook-toolbar">
+    <button class="toolbar-btn" (click)="sendEmail()">
+      <span class="btn-icon">📨</span>
+      <span class="btn-text">{{ langService.currentLang() === 'es' ? 'Enviar' : 'Send' }}</span>
+    </button>
+    <div class="toolbar-separator"></div>
+    <!-- Input file Oculto para abrir el explorador de Windows de la PC del usuario -->
+    <input
+      type="file"
+      #fileInput
+      style="display: none"
+      multiple
+      (change)="onFilesSelected($event)"
+    />
+
+    <!-- Botón de Adjuntar que activa el input oculto -->
+    <button class="toolbar-btn" (click)="triggerFileInput(fileInput)">
+      <span class="btn-icon">📎</span>
+      <span class="btn-text">{{ langService.currentLang() === 'es' ? 'Adjuntar' : 'Attach' }}</span>
+    </button>
+  </div>
+
+  <!-- Campos del Encabezado (Para, Asunto y Adjuntos si los hay) -->
+  <div class="outlook-header-fields">
+    <div class="field-row">
+      <label>{{ langService.currentLang() === 'es' ? 'Para:' : 'To:' }}</label>
+      <input type="text" [value]="myEmail" readonly class="readonly-input" />
+    </div>
+    <div class="field-row">
+      <label>{{ langService.currentLang() === 'es' ? 'Asunto:' : 'Subject:' }}</label>
+      <input
+        type="text"
+        [(ngModel)]="subject"
+        placeholder="{{
+          langService.currentLang() === 'es' ? 'Escribe el asunto...' : 'Write the subject...'
+        }}"
+      />
+    </div>
+
+    <!-- LISTA DE ARCHIVOS ADJUNTOS (Aparece solo si hay archivos) -->
+    @if (attachedFiles.length > 0) {
+      <div class="field-row attachments-row">
+        <label>{{ langService.currentLang() === 'es' ? 'Adjunto:' : 'Attached:' }}</label>
+        <div class="attachments-list">
+          @for (file of attachedFiles; track $index) {
+            <div class="attachment-chip">
+              <span>📄 {{ file.name }} ({{ file.size }})</span>
+              <button class="remove-attachment" (click)="removeAttachment($index)">×</button>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Cuerpo del Mensaje -->
+  <div class="outlook-body">
+    <textarea
+      [(ngModel)]="body"
+      spellcheck="false"
+      placeholder="{{
+        langService.currentLang() === 'es'
+          ? 'Escribe tu mensaje aquí...'
+          : 'Type your message here...'
+      }}"
+    ></textarea>
+  </div>
+</div>

@@ -47,10 +47,10 @@ export class StackAdm {
   }
 
   onMinimize() {
-    this.minimize.emit(); // "¡Papá, me minimizaron!"
+    this.minimize.emit();
   }
 
   onClose() {
-    this.close.emit(); // "¡Papá, me cerraron!"
+    this.close.emit();
   }
 }

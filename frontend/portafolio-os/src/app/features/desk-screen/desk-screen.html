@@ -38,6 +38,24 @@
     </app-stack-adm>
   }
 
+  <!-- VENTANA ABOUT ME -->
+  @if (isAppOpen('about') && !isAppMinimized('about')) {
+    <app-about-me
+      class="draggable-window-container"
+      (minimize)="minimizeApp('about')"
+      (close)="closeApp('about')"
+    >
+    </app-about-me>
+  }
+
+  @if (isAppOpen('contact') && !isAppMinimized('contact')) {
+    <app-contact
+      class="draggable-window-container"
+      (minimize)="minimizeApp('contact')"
+      (close)="closeApp('contact')"
+    ></app-contact>
+  }
+
   <!-- BARRA DE TAREAS -->
   <app-task-bar [activeApps]="runningApps" (appClick)="toggleAppFromTaskbar($event)">
   </app-task-bar>

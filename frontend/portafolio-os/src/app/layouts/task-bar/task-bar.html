@@ -16,7 +16,9 @@
         (click)="appClick.emit(app.id)"
       >
         <img [src]="app.icon" class="taskbar-icon" />
-        <span class="taskbar-text">{{ app.title }}</span>
+        <span class="taskbar-text">
+          {{ langService.currentLang() === 'es' ? app.title.es : app.title.en }}
+        </span>
       </div>
     }
   </div>

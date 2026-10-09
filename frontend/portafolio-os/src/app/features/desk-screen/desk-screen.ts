@@ -4,11 +4,13 @@ import { TaskBar } from '../../layouts/task-bar/task-bar';
 import { CdkDrag, CdkDropList, CdkDropListGroup, CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { StackAdm } from '../../layouts/stack-adm/stack-adm';
 import { AppProcess } from './interfaces/AppProcess';
+import { AboutMe } from '../../layouts/about-me/about-me';
+import { Contact } from '../../layouts/contact/contact';
 
 @Component({
   selector: 'app-desk-screen',
   standalone: true,
-  imports: [TaskBar, StackAdm, CdkDrag, CdkDropList, CdkDropListGroup], 
+  imports: [TaskBar, StackAdm, CdkDrag, CdkDropList, CdkDropListGroup, AboutMe, Contact], 
   templateUrl: './desk-screen.html',
   styleUrl: './desk-screen.css',
 })
@@ -125,7 +127,6 @@ export class DeskScreen implements OnInit {
     );
   }
 
-  // ---------------- LOGICA ADMINISTRACION DE STACK ----------------
   openApp(appId: string) {
     // Verifica si la app ya está abierta
     const existingApp = this.runningApps.find(app => app.id === appId);
@@ -140,8 +141,22 @@ export class DeskScreen implements OnInit {
     if (appId === 'stack') {
       this.runningApps.push({
         id: 'stack',
-        title: 'Administrador de Stack',
+        title: { es: 'Administrador de Stack', en: 'Stack Administrator' },
         icon: 'assets/List File.ico',
+        isMinimized: false
+      });
+    } else if (appId === 'about') {
+      this.runningApps.push({
+        id: 'about',
+        title: { es: 'Sobre Mí', en: 'About Me' }, 
+        icon: 'assets/User 1.ico', 
+        isMinimized: false
+      });
+    } else if (appId === 'contact') {
+      this.runningApps.push({
+        id: 'contact',
+        title: { es: 'Contacto', en: 'Contact' }, 
+        icon: 'assets/Phone.ico', // El icono que le pusiste a contacto en tu desktopGrid
         isMinimized: false
       });
     }

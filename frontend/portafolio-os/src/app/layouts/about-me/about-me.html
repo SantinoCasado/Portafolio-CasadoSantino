@@ -1,1 +1,91 @@
-<p>about-me works!</p>
+<div
+  class="xp-window about-window"
+  [class.maximized]="isMaximized"
+  cdkDrag
+  cdkDragBoundary=".xp-desktop-container"
+>
+  <!-- Barra de título -->
+  <div class="xp-title-bar" cdkDragHandle>
+    <div class="xp-title-text">
+      <!-- Ícono opcional en la barra -->
+      {{
+        langService.currentLang() === 'es'
+          ? 'Acerca de mí - Santino Casado'
+          : 'About me - Santino Casado'
+      }}
+    </div>
+
+    <div class="xp-title-buttons">
+      <button class="xp-btn-min" (click)="onMinimize()">_</button>
+      <button class="xp-btn-max" (click)="toggleMaximize()">□</button>
+      <button class="xp-btn-close" (click)="onClose()">X</button>
+    </div>
+  </div>
+
+  <!-- Contenedor Principal (Fondo Crema) -->
+  <div class="about-content">
+    <!-- Cabecera: Foto de GitHub y Títulos -->
+    <div class="about-header">
+      <div class="profile-pic-container">
+        <img [src]="githubAvatarUrl" alt="Foto de perfil" class="profile-pic" />
+      </div>
+      <div class="profile-info">
+        <h1 class="profile-name">Santino Casado</h1>
+        <h2 class="profile-role">
+          {{
+            langService.currentLang() === 'es'
+              ? 'Analista de Datos y Desarrollador de Software'
+              : 'Data Analyst and Software Developer'
+          }}
+        </h2>
+      </div>
+    </div>
+
+    <hr class="xp-divider" />
+
+    <!-- Texto descriptivo (Acá podés usar currentContent para traer el JSON o escribir el texto corto) -->
+    <div class="about-text">
+      <p class="description-paragraph" style="white-space: pre-wrap">{{ currentContent }}</p>
+    </div>
+
+    <!-- Caja de Información (Efecto hundido) -->
+    <div class="info-box">
+      <div class="info-row">
+        <span class="info-label">{{
+          langService.currentLang() === 'es' ? 'Nombre:' : 'Name:'
+        }}</span>
+        <span class="info-value">Santino Casado</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">{{ langService.currentLang() === 'es' ? 'Rol:' : 'Role:' }}</span>
+        <span class="info-value">{{
+          langService.currentLang() === 'es'
+            ? 'Analista de Datos y Desarrollador de Software'
+            : 'Data Analyst and Software Developer'
+        }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">{{
+          langService.currentLang() === 'es' ? 'Ubicación:' : 'Location:'
+        }}</span>
+        <span class="info-value">Argentina</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">{{
+          langService.currentLang() === 'es' ? 'Estado:' : 'Status:'
+        }}</span>
+        <span class="info-value">{{
+          langService.currentLang() === 'es'
+            ? 'Disponible para proyectos'
+            : 'Available for projects'
+        }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de estado inferior -->
+  <div class="xp-status-bar-bottom">
+    <span class="status-left">{{ langService.currentLang() === 'es' ? 'Listo' : 'Ready' }}</span>
+    <span class="status-right">Windows XP Style</span>
+  </div>
+</div>
