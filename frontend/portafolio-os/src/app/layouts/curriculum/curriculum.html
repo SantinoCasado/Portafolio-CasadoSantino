@@ -1,1 +1,61 @@
-<p>curriculum works!</p>
+<div
+  class="xp-window cv-window"
+  [class.maximized]="isMaximized"
+  cdkDrag
+  cdkDragBoundary=".xp-desktop-container"
+>
+  <!-- Barra de Título -->
+  <div class="xp-title-bar" cdkDragHandle>
+    <div class="xp-title-text">
+      📄
+      {{
+        langService.currentLang() === 'es'
+          ? 'Curriculum_Vitae - Visor de imágenes'
+          : 'Curriculum_Vitae - Picture Viewer'
+      }}
+    </div>
+    <div class="xp-title-buttons">
+      <button class="xp-btn-min" (click)="onMinimize()">_</button>
+      <button class="xp-btn-max" (click)="toggleMaximize()">□</button>
+      <button class="xp-btn-close" (click)="onClose()">X</button>
+    </div>
+  </div>
+
+  <!-- Menú superior -->
+  <div class="cv-menu-bar">
+    <span>{{ langService.currentLang() === 'es' ? 'Archivo' : 'File' }}</span>
+    <span>{{ langService.currentLang() === 'es' ? 'Edición' : 'Edit' }}</span>
+    <span>{{ langService.currentLang() === 'es' ? 'Ver' : 'View' }}</span>
+    <span>{{ langService.currentLang() === 'es' ? 'Ayuda' : 'Help' }}</span>
+  </div>
+
+  <!-- Barra de herramientas -->
+  <div class="cv-toolbar">
+    <button class="toolbar-btn" (click)="downloadCv()">
+      <span class="btn-icon">💾</span>
+      <span class="btn-text">
+        {{
+          langService.currentLang() === 'es'
+            ? 'Descargar PDF (Versión ES)'
+            : 'Download PDF (EN Version)'
+        }}
+      </span>
+    </button>
+  </div>
+
+  <!-- Contenedor del documento con scroll -->
+  <div class="cv-viewer-container">
+    <div class="cv-paper">
+      <!-- Se inyecta dinámicamente cvImageSrc -->
+      <img [src]="cvImageSrc" alt="Curriculum Santino Casado" class="cv-image" />
+    </div>
+  </div>
+
+  <!-- Barra de Estado inferior -->
+  <div class="xp-status-bar-bottom">
+    <span class="status-left">{{
+      langService.currentLang() === 'es' ? '1 de 1 página' : '1 of 1 page'
+    }}</span>
+    <span class="status-right">Windows XP Style</span>
+  </div>
+</div>

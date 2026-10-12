@@ -56,6 +56,10 @@
     ></app-contact>
   }
 
+  @if (isAppOpen('cv') && !isAppMinimized('cv')) {
+    <app-curriculum (minimize)="minimizeApp('cv')" (close)="closeApp('cv')"></app-curriculum>
+  }
+
   <!-- BARRA DE TAREAS -->
   <app-task-bar [activeApps]="runningApps" (appClick)="toggleAppFromTaskbar($event)">
   </app-task-bar>

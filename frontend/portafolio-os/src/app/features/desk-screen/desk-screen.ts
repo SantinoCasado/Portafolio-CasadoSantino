@@ -6,11 +6,12 @@ import { StackAdm } from '../../layouts/stack-adm/stack-adm';
 import { AppProcess } from './interfaces/AppProcess';
 import { AboutMe } from '../../layouts/about-me/about-me';
 import { Contact } from '../../layouts/contact/contact';
+import { Curriculum } from '../../layouts/curriculum/curriculum';
 
 @Component({
   selector: 'app-desk-screen',
   standalone: true,
-  imports: [TaskBar, StackAdm, CdkDrag, CdkDropList, CdkDropListGroup, AboutMe, Contact], 
+  imports: [TaskBar, StackAdm, CdkDrag, CdkDropList, CdkDropListGroup, AboutMe, Contact, Curriculum], 
   templateUrl: './desk-screen.html',
   styleUrl: './desk-screen.css',
 })
@@ -37,7 +38,7 @@ export class DeskScreen implements OnInit {
     { id: 'projects', img: 'My Network Places.ico', nameEs: 'Proyectos', nameEn: 'Proyects', preferredIndex: 8 },
     { id: 'stack', img: 'List File.ico', nameEs: 'Administrar Stack', nameEn: 'Administrate Stack', preferredIndex: 16 },
     { id: 'contact', img: 'Phone.ico', nameEs: 'Contacto', nameEn: 'Contact', preferredIndex: 1 },
-    { id: 'resume', img: 'File.ico', nameEs: 'Curriculum', nameEn: 'Resume', preferredIndex: 9 },
+    { id: 'cv', img: 'File.ico', nameEs: 'Curriculum', nameEn: 'Resume', preferredIndex: 9 },
     // Los juegos los tiramos más adelante. Si la pantalla es chica, el rescate los reubicará solos
     { id: 'minesweeper', img: 'Minesweeper.ico', nameEs: 'Busca Minas', nameEn: 'Minesweeper', preferredIndex: 136 },
     { id: 'tetris', img: 'Game Controller.ico', nameEs: 'Tetris', nameEn: 'Tetris', preferredIndex: 137 }
@@ -157,6 +158,13 @@ export class DeskScreen implements OnInit {
         id: 'contact',
         title: { es: 'Contacto', en: 'Contact' }, 
         icon: 'assets/Phone.ico', // El icono que le pusiste a contacto en tu desktopGrid
+        isMinimized: false
+      });
+    } else if (appId === 'cv') {
+      this.runningApps.push({
+        id: 'cv',
+        title: { es: 'Currículum', en: 'Curriculum' },
+        icon: 'assets/File.ico',
         isMinimized: false
       });
     }
