@@ -81,12 +81,42 @@
             "en": "Vehicles Management System"
         },
         "description": {
-            "es": "aplicación de escritorio desarrollada en Java con JavaFX que permite gestionar un inventario completo de vehículos (Autos, Motos y Camionetas).",
+            "es": "Aplicación de escritorio desarrollada en Java con JavaFX que permite gestionar un inventario completo de vehículos (Autos, Motos y Camionetas).",
             "en": "Desktop application developed in Java with JavaFX that allows managing a complete inventory of vehicles (Cars, Motorcycles and Trucks)."
         },
         "technologies": ["Java", "JavaFX", "JSON.org", "FXML", "Scene Builder", "PlantUML"],
         "type": "Desktop App",
         "repoUrl": "https://github.com/SantinoCasado/Casado.Santino.Final.Java.2024.git",
+        "liveUrl": ""
+    },
+    {
+        "id": "products-managemnt-system",
+        "title": {
+            "es": "Sistema de Gestión de Productos Químicos y Ecológicos",
+            "en": "Chemical and Ecological Product Management System"
+        },
+        "description": {
+            "es": "Aplicación de escritorio desarrollada en Java con JavaFX que permite gestionar un inventario para una empresa farmaceutica de productos químicos y ecológicos.",
+            "en": "Desktop application developed in Java using JavaFX that enables inventory management for a pharmaceutical company dealing in chemical and eco-friendly products."
+        },
+        "technologies": ["Java", "JavaFX", "JSON.org", "FXML", "Scene Builder", "PlantUML"],
+        "type": "Desktop App",
+        "repoUrl": "https://github.com/SantinoCasado/RecuperatorioSegundoParcial-Progamacion2-CasadoSantino.git",
+        "liveUrl": ""
+    },
+    {
+        "id": "ping-pong-game",
+        "title": {
+            "es": "Juego Clasigo de Ping Pong con Python",
+            "en": "Classic Ping Pong Game with Python"
+        },
+        "description": {
+            "es": "Video Juego Clásico de Ping-Pong desarrollado para jugarse en local con Python y PyGames.",
+            "en": "Classic Ping-Pong video game developed for local play using Python and Pygame."
+        },
+        "technologies": ["Python", "PyGames", "JSON.org"],
+        "type": "Desktop App",
+        "repoUrl": "https://github.com/SantinoCasado/UTNFRA_TP2_PingPong_WindowsForEver.git",
         "liveUrl": ""
     }
 ]
