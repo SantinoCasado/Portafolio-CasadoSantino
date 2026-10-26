@@ -1,0 +1,92 @@
+[
+    {
+        "id": "red-social-network",
+        "title": {
+            "es": "Aura Red Social",
+            "en": "Aura Social Network"
+        },
+        "description": {
+            "es": "Una red social para conectar personas con intereses similares, desarrollada con Angular y NestJs.",
+            "en": "A social network to connect people with similar interests, developed with Angular and NestJs."
+        },
+        "technologies": ["Angular", "NestJs", "MongoDB", "Supabase", "PostgreSQL" ,"TypeScript", "Vercel", "CSS", "HTML", "Bootstrap"],
+        "type": "Web Page",
+        "repoUrl": "https://github.com/SantinoCasado/PrograIV-TP2-CasadoSantino.git",
+        "liveUrl": "https://progra-iv-tp-2-casado-santino-angul.vercel.app/"
+    },
+    {
+        "id": "games-network",
+        "title": {
+            "es": "Cyber Burn - Sala de Juegos",
+            "en": "Cyber Burn - Game Room"
+        },
+        "description": {
+            "es": "Plataforma de minijuegos con autenticación, rankings en tiempo real y chat global, desarrollada con Angular y Supabase.",
+            "en": "A platform for mini-games with authentication, real-time rankings, and global chat, developed with Angular and Supabase."
+        },
+        "technologies": ["Angular", "Supabase", "TypeScript", "PostgreSQL", "RxJs", "CSS", "HTML", "Bootstrap"],
+        "type": "Web Page",
+        "repoUrl": "https://github.com/SantinoCasado/PrograIV-TP1-CasadoSantino.git",
+        "liveUrl": "https://prograiv-saladejuegos.web.app/"
+    },
+    {
+        "id": "gaming-marketplace",
+        "title": {
+            "es": "Gaming - Tienda de Hardware y Software",
+            "en": "Gaming - Hardware and Software Store"
+        },
+        "description": {
+            "es": "Sistema de autoservicio para la compra de productos de tecnología (hardware y software), con panel de administración para gestión de productos y ventas. Desarrollado con Node.js, MySQL, Sequelize y LocalStorage.",
+            "en": "System for self-service purchase of technology products (hardware and software), with an admin panel for product and sales management. Developed with Node.js, MySQL, Sequelize, and LocalStorage."
+        },
+        "technologies": ["TypeScript", "Sequelize", "CSS", "HTML", "JavaScript" , "Bootstrap", "Express", "Node.js", "MySQL", "Ejs"],
+        "type": "Web Page",
+        "repoUrl": "https://github.com/SantinoCasado/console.log-nota-4-Estamos-hasta-las-manos.TP.git",
+        "liveUrl": ""
+    },
+    {
+        "id": "paints-administration-system",
+        "title": {
+            "es": "Sistema de Gestión de Pinturas",
+            "en": "Paints Administration System"
+        },
+        "description": {
+            "es": "Sistema web completo para la gestión de inventario de pinturas desarrollado con tecnologías web modernas. Desarrollado con HTML, CSS, JavaScript y API REST.",
+            "en": "Complete web system for managing paint inventory developed with modern web technologies. Developed with HTML, CSS, JavaScript and REST API."
+        },
+        "technologies": ["CSS", "HTML", "JavaScript" , "Bootstrap"],
+        "type": "Web Page",
+        "repoUrl": "https://github.com/SantinoCasado/PrimerParcial-ProgramacionIII-2025.git",
+        "liveUrl": ""
+    },
+    {
+        "id": "mobile-app",
+        "title": {
+            "es": "Jardín Imperial",
+            "en": "Imperial Garden"
+        },
+        "description": {
+            "es": "Aplicacion móvil para la gestion de un restaurante de comida china, desde altas de usarios hasta la gestion de pedidos, desarrollada con React Native, Expo, Node y PostgreSQL.",
+            "en": "A mobile application for managing a Chinese restaurant, from user registrations to order management, developed with React Native, Expo, Node and PostgreSQL."
+        },
+        "technologies": ["Supabase", "TypeScript", "PostgreSQL", "React Native", "Expo", "Express", "NativeWind", "Brevo", "Tsx"],
+        "type": "Mobile App",
+        "repoUrl": "https://github.com/SantinoCasado/GrupoLambda-2026.git",
+        "liveUrl": ""
+    },
+    {
+        "id": "vehicles-management-system",
+        "title": {
+            "es": "Sistema de Gestión de Vehículos",
+            "en": "Vehicles Management System"
+        },
+        "description": {
+            "es": "aplicación de escritorio desarrollada en Java con JavaFX que permite gestionar un inventario completo de vehículos (Autos, Motos y Camionetas).",
+            "en": "Desktop application developed in Java with JavaFX that allows managing a complete inventory of vehicles (Cars, Motorcycles and Trucks)."
+        },
+        "technologies": ["Java", "JavaFX", "JSON.org", "FXML", "Scene Builder", "PlantUML"],
+        "type": "Desktop App",
+        "repoUrl": "https://github.com/SantinoCasado/Casado.Santino.Final.Java.2024.git",
+        "liveUrl": ""
+    }
+]
