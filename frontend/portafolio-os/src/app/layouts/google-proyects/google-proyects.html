@@ -1,1 +1,198 @@
-<p>google-proyects works!</p>
+<div
+  class="xp-window browser-window"
+  [class.maximized]="isMaximized"
+  cdkDrag
+  cdkDragBoundary=".xp-desktop-container"
+>
+  <!-- Barra de Título XP -->
+  <div class="xp-title-bar" cdkDragHandle>
+    <div class="xp-title-text">
+      🌐
+      {{
+        langService.currentLang() === 'es'
+          ? 'Internet Explorer - Google Search'
+          : 'Internet Explorer - Google Search'
+      }}
+    </div>
+    <div class="xp-title-buttons">
+      <button class="xp-btn-min" (click)="onMinimize()">_</button>
+      <button class="xp-btn-max" (click)="toggleMaximize()">□</button>
+      <button class="xp-btn-close" (click)="onClose()">X</button>
+    </div>
+  </div>
+
+  <!-- VISTA 1: HOME DE GOOGLE (Antes de buscar) -->
+  @if (!hasSearched) {
+    <div class="google-home-container">
+      <!-- Logo Retro Google XP -->
+      <div class="google-logo">
+        <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span
+        ><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+        <span class="logo-sub">Projects</span>
+      </div>
+
+      <!-- Buscador Central -->
+      <div class="search-box-wrapper">
+        <div class="search-input-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            class="main-search-input"
+            [(ngModel)]="currentSearch"
+            (input)="onInputChange()"
+            (keyup.enter)="executeSearch()"
+            placeholder="{{
+              langService.currentLang() === 'es'
+                ? 'Buscar tecnología (ej: Python) o tipo (ej: Web)...'
+                : 'Search tech (eg: Python) or type (eg: Web)...'
+            }}"
+            autofocus
+          />
+          <!-- Botón de limpiar "X" -->
+          @if (currentSearch.length > 0) {
+            <span class="clear-icon" (click)="currentSearch = ''; onInputChange()">✕</span>
+          }
+        </div>
+
+        <!-- matchBar (Recomendaciones) -->
+        @if (showSuggestions) {
+          <ul class="suggestions-dropdown">
+            @for (suggestion of matchBar; track suggestion) {
+              <li (click)="selectSuggestion(suggestion)">⚡ {{ suggestion }}</li>
+            }
+          </ul>
+        }
+      </div>
+
+      <div class="home-buttons">
+        <button class="google-btn" (click)="executeSearch()">
+          {{ langService.currentLang() === 'es' ? 'Buscar con Google' : 'Google Search' }}
+        </button>
+        <button class="google-btn" (click)="currentSearch = ''; executeSearch()">
+          {{ langService.currentLang() === 'es' ? 'Ver Todos los Proyectos' : 'View All Projects' }}
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- VISTA 2: RESULTADOS DE BÚSQUEDA (Después de apretar Enter) -->
+  @else {
+    <!-- Header Superior de Resultados -->
+    <div class="results-header">
+      <div class="small-logo" (click)="goHome()" title="Volver al inicio">
+        <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span
+        ><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+      </div>
+
+      <div class="search-box-wrapper compact">
+        <input
+          type="text"
+          class="compact-search-input"
+          [(ngModel)]="currentSearch"
+          (input)="onInputChange()"
+          (keyup.enter)="executeSearch()"
+        />
+
+        <!-- Botón de limpiar "X" en modo compacto -->
+        @if (currentSearch.length > 0) {
+          <span class="clear-icon compact-clear" (click)="currentSearch = ''; onInputChange()"
+            >✕</span
+          >
+        }
+
+        <button class="compact-search-btn" (click)="executeSearch()">🔍</button>
+
+        @if (showSuggestions) {
+          <ul class="suggestions-dropdown compact-dropdown">
+            @for (suggestion of matchBar; track suggestion) {
+              <li (click)="selectSuggestion(suggestion)">⚡ {{ suggestion }}</li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+
+    <!-- Estadísticas de búsqueda -->
+    <div class="results-stats">
+      {{ langService.currentLang() === 'es' ? 'Cerca de' : 'About' }}
+      {{ projectMatches.length }}
+      {{ langService.currentLang() === 'es' ? 'resultados encontrados' : 'results found' }}
+    </div>
+
+    <!-- Lista/Grilla de Proyectos Encontrados -->
+    <!-- Lista de Resultados Estilo Google Original -->
+    <div class="browser-body">
+      <div class="search-results-list">
+        @for (project of projectMatches; track project.id) {
+          <div class="result-item">
+            <!-- Breadcrumb (Simula la URL verde/gris arriba del título) -->
+            <div class="result-breadcrumb">{{ project.repoUrl }}</div>
+
+            <!-- Título y botón de Demo -->
+            <div class="result-header">
+              <h3 class="result-title" (click)="openUrl(project.repoUrl)">
+                {{ project.title.es ? project.title[langService.currentLang()] : project.title }}
+              </h3>
+
+              @if (project.liveUrl) {
+                <button class="demo-pill" (click)="openUrl(project.liveUrl)">🚀 Demo</button>
+              }
+            </div>
+
+            <!-- Descripción -->
+            <p class="result-desc">
+              {{
+                project.description.es
+                  ? project.description[langService.currentLang()]
+                  : project.description
+              }}
+            </p>
+
+            <!-- Tecnologías y Tipo -->
+            <div class="result-techs">
+              <span class="result-tech-tag type-tag">{{ project.type }}</span>
+              @for (tech of project.technologies; track tech) {
+                <span class="result-tech-tag">{{ tech }}</span>
+              }
+            </div>
+          </div>
+        } @empty {
+          <div class="no-results">
+            <p style="color: #dd4b39; font-size: 16px; margin-bottom: 5px">
+              {{
+                langService.currentLang() === 'es'
+                  ? 'Tu búsqueda no obtuvo ningún resultado.'
+                  : 'Your search did not match any documents.'
+              }}
+            </p>
+            <p style="font-size: 13px">
+              {{ langService.currentLang() === 'es' ? 'Sugerencias:' : 'Suggestions:' }}
+            </p>
+            <ul style="font-size: 13px; text-align: left; display: inline-block; margin-top: 5px">
+              <li>
+                {{
+                  langService.currentLang() === 'es'
+                    ? 'Asegurate de que todas las palabras estén bien escritas.'
+                    : 'Make sure all words are spelled correctly.'
+                }}
+              </li>
+              <li>
+                {{
+                  langService.currentLang() === 'es'
+                    ? 'Probá usar palabras clave como "Web" o "Angular".'
+                    : 'Try using keywords like "Web" or "Angular".'
+                }}
+              </li>
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Barra de Estado Inferior -->
+  <div class="xp-status-bar-bottom">
+    <span>Google Search Engine</span>
+    <span>Ready</span>
+  </div>
+</div>

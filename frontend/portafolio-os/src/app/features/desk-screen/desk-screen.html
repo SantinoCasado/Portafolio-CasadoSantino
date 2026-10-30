@@ -60,6 +60,12 @@
     <app-curriculum (minimize)="minimizeApp('cv')" (close)="closeApp('cv')"></app-curriculum>
   }
 
+  <!-- VENTANA DEL BUSCADOR DE PROYECTOS -->
+  @if (isAppOpen('projects') && !isAppMinimized('projects')) {
+    <app-google-proyects (minimize)="minimizeApp('projects')" (close)="closeApp('projects')">
+    </app-google-proyects>
+  }
+
   <!-- BARRA DE TAREAS -->
   <app-task-bar [activeApps]="runningApps" (appClick)="toggleAppFromTaskbar($event)">
   </app-task-bar>

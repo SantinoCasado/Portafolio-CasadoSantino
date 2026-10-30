@@ -118,5 +118,20 @@
         "type": "Desktop App",
         "repoUrl": "https://github.com/SantinoCasado/UTNFRA_TP2_PingPong_WindowsForEver.git",
         "liveUrl": ""
+    },
+    {
+        "id": "virtual-machine",
+        "title": {
+            "es": "Maquina virtual y Scrips",
+            "en": "Virtual Machine and Scrips"
+        },
+        "description": {
+            "es": "Maquina virtual progrmada desde cero con shell y ruby ademas de diveros scrips como particiones de discos, permisos, usuarios y migracion de docker.",
+            "en": "A virtual machine programmed from scratch using shell and Ruby, featuring various scripts for tasks such as disk partitioning, managing permissions and users, and Docker migration."
+        },
+        "technologies": ["shell", "ruby", "vagrant", "docker"],
+        "type": "Shell",
+        "repoUrl": "https://github.com/SantinoCasado/TP_AySO_Integral_ILoveLinux.git",
+        "liveUrl": ""
     }
 ]

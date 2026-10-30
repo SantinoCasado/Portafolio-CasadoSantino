@@ -7,11 +7,12 @@ import { AppProcess } from './interfaces/AppProcess';
 import { AboutMe } from '../../layouts/about-me/about-me';
 import { Contact } from '../../layouts/contact/contact';
 import { Curriculum } from '../../layouts/curriculum/curriculum';
+import { GoogleProyects } from '../../layouts/google-proyects/google-proyects';
 
 @Component({
   selector: 'app-desk-screen',
   standalone: true,
-  imports: [TaskBar, StackAdm, CdkDrag, CdkDropList, CdkDropListGroup, AboutMe, Contact, Curriculum], 
+  imports: [TaskBar, StackAdm, CdkDrag, CdkDropList, CdkDropListGroup, AboutMe, Contact, Curriculum,  GoogleProyects], 
   templateUrl: './desk-screen.html',
   styleUrl: './desk-screen.css',
 })
@@ -165,6 +166,13 @@ export class DeskScreen implements OnInit {
         id: 'cv',
         title: { es: 'Currículum', en: 'Curriculum' },
         icon: 'assets/File.ico',
+        isMinimized: false
+      });
+    } else if (appId === 'projects') { // <-- AGREGA ESTE BLOQUE
+      this.runningApps.push({
+        id: 'projects',
+        title: { es: 'Buscador de Proyectos', en: 'Projects Search' },
+        icon: 'assets/My Network Places.ico', // El ícono que le pusiste en myIcons
         isMinimized: false
       });
     }
