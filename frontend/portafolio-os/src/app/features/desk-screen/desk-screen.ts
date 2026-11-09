@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, Output, EventEmitter, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
 import { TaskBar } from '../../layouts/task-bar/task-bar';
 import { CdkDrag, CdkDropList, CdkDropListGroup, CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
@@ -33,8 +34,18 @@ export class DeskScreen implements OnInit {
   // Lista de procesos abiertos (para la barra de tareas)
   runningApps: AppProcess[] = [];
 
+  // Variables del Menú de Inicio
+  isStartMenuOpen = false;
+  userName = '';
+  userAvatar = '';
+
+  private router = inject(Router);
+
+  //evento de logout
+  @Output() logout = new EventEmitter<void>();
+
   // Guardado de iconos originales
-  private myIcons = [
+  myIcons = [
     { id: 'about', img: 'User 1.ico', nameEs: 'Sobre Mi', nameEn: 'About Me', preferredIndex: 0 },
     { id: 'projects', img: 'My Network Places.ico', nameEs: 'Proyectos', nameEn: 'Proyects', preferredIndex: 8 },
     { id: 'stack', img: 'List File.ico', nameEs: 'Administrar Stack', nameEn: 'Administrate Stack', preferredIndex: 16 },
@@ -50,6 +61,12 @@ export class DeskScreen implements OnInit {
   ngOnInit() {
     this.calculateGridSize();
     this.initializeGrid();
+
+    // Al cargar el escritorio, lee quién inició sesión
+    this.userName = sessionStorage.getItem('userName') || 'Invitado';
+    
+    // Lo mismo para la foto
+    this.userAvatar = sessionStorage.getItem('userAvatar') || 'assets/img/default-avatar.png';
   }
 
   // Escucha cada vez que cambia el tamaño de la venta, es decir si hace zoom
@@ -204,5 +221,25 @@ export class DeskScreen implements OnInit {
     if (app) {
       app.isMinimized = !app.isMinimized;
     }
+  }
+
+  // Alterna la visibilidad del menú
+  toggleStartMenu(): void {
+    this.isStartMenuOpen = !this.isStartMenuOpen;
+  }
+
+  // Abre la app desde el menú y lo cierra
+  openAppFromMenu(appId: string): void {
+    this.openApp(appId);
+    this.isStartMenuOpen = false; // Cierra el menú al abrir la app
+  }
+
+  // Simula el cierre de sesión (Recarga la página para volver a la pantalla de carga/login)
+  logOut(): void {
+    this.isStartMenuOpen = false; // Cierra el menucito visualmente
+    sessionStorage.removeItem('userLogged'); // Te saca la credencial
+    sessionStorage.removeItem('userName'); // Te saca el nombre
+    sessionStorage.removeItem('userAvatar');
+    this.router.navigate(['/']); // Te devuelve al inicio
   }
 }

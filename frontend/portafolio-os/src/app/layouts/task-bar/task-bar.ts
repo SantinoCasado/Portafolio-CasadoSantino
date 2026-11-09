@@ -26,7 +26,8 @@ export class TaskBar implements OnInit, OnDestroy {
   @Output() stackAppClick = new EventEmitter<void>();
   // Emite el ID de la app que el usuario clickeó en la barra
   @Output() appClick = new EventEmitter<string>();
-
+  @Output() toggleStart = new EventEmitter<void>();
+  
   // Inyectamos el servicio como PUBLIC para que el HTML pueda leerlo
   constructor(public langService: LanguageService) {}
 

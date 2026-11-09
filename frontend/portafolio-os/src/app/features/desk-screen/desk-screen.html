@@ -67,6 +67,69 @@
   }
 
   <!-- BARRA DE TAREAS -->
-  <app-task-bar [activeApps]="runningApps" (appClick)="toggleAppFromTaskbar($event)">
+  <app-task-bar
+    [activeApps]="runningApps"
+    (appClick)="toggleAppFromTaskbar($event)"
+    (toggleStart)="toggleStartMenu()"
+  >
   </app-task-bar>
+  <!-- MENÚ DE INICIO (START MENU XP) -->
+  @if (isStartMenuOpen) {
+    <div class="xp-start-menu">
+      <!-- Cabecera Azul -->
+      <div class="start-menu-header">
+        <img
+          [src]="userAvatar"
+          alt="Avatar del usuario"
+          class="user-avatar-img"
+          (error)="$any($event.target).src = 'assets/Computer.ico'"
+        />
+        <span class="user-name">{{ userName }}</span>
+      </div>
+
+      <!-- Cuerpo del menú -->
+      <div class="start-menu-body">
+        <!-- Columna Izquierda (Tus Apps dinámicas) -->
+        <div class="start-menu-left">
+          @for (icon of myIcons; track icon.id) {
+            <div class="start-menu-item" (click)="openAppFromMenu(icon.id)">
+              <img
+                [src]="'assets/' + icon.img"
+                alt="icon"
+                class="item-icon"
+                (error)="$any($event.target).style.display = 'none'"
+              />
+              <span class="item-text">{{
+                langService.currentLang() === 'es' ? icon.nameEs : icon.nameEn
+              }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- Columna Derecha (Estética XP) -->
+        <div class="start-menu-right">
+          <div class="start-menu-item right-item">
+            <span class="item-icon">📁</span>
+            <span class="item-text">{{
+              langService.currentLang() === 'es' ? 'Mis Documentos' : 'My Documents'
+            }}</span>
+          </div>
+          <div class="start-menu-item right-item">
+            <span class="item-icon">⚙️</span>
+            <span class="item-text">{{
+              langService.currentLang() === 'es' ? 'Panel de Control' : 'Control Panel'
+            }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pie de página (Cerrar sesión) -->
+      <div class="start-menu-footer">
+        <div class="footer-btn logout-btn" (click)="logOut()">
+          <span class="footer-icon">🔑</span>
+          <span>{{ langService.currentLang() === 'es' ? 'Cerrar sesión' : 'Log Off' }}</span>
+        </div>
+      </div>
+    </div>
+  }
 </div>

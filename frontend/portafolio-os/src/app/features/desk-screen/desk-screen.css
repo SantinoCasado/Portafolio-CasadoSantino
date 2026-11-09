@@ -111,3 +111,127 @@
 .direct-access:active .shortcut-icon {
   opacity: 0.8;
 }
+
+/* --------------------------------------
+   MENÚ DE INICIO WINDOWS XP
+-------------------------------------- */
+.xp-start-menu {
+  position: absolute;
+  bottom: 40px; /* Altura de tu taskbar */
+  left: 0;
+  width: 380px;
+  background-color: #ffffff;
+  border: 1px solid #0055e5;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  font-family: Tahoma, Arial, sans-serif;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.start-menu-header {
+  background: linear-gradient(180deg, #127dff 0%, #0058e6 100%);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  border-bottom: 2px solid #ff6600; /* La clásica línea naranja de XP */
+}
+
+.user-avatar-img {
+  width: 42px;
+  height: 42px;
+  background-color: white;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  object-fit: cover; /* Evita que tu foto se deforme */
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.start-menu-body {
+  display: flex;
+  min-height: 250px;
+}
+
+.start-menu-left {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 5px;
+}
+
+.start-menu-right {
+  width: 150px;
+  background-color: #d3e5fa; /* Azul claro clásico de la derecha */
+  border-left: 1px solid #95bcee;
+  padding: 5px;
+}
+
+.start-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #333;
+}
+
+.start-menu-item:hover {
+  background-color: #316ac5;
+  color: white;
+}
+
+.right-item {
+  font-size: 11px;
+  font-weight: bold;
+  color: #001f5c;
+}
+.right-item:hover {
+  color: white;
+}
+
+.item-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 18px; /* Para los emojis */
+}
+
+.item-text {
+  font-size: 12px;
+}
+
+.start-menu-footer {
+  background: linear-gradient(180deg, #127dff 0%, #0058e6 100%);
+  padding: 8px 10px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #003c74;
+}
+
+.footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.footer-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-icon {
+  font-size: 16px;
+}

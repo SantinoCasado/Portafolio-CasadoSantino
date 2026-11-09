@@ -1,6 +1,6 @@
 <div class="xp-taskbar">
   <!-- BOTÓN DE INICIO VERDE -->
-  <button class="xp-start-btn">
+  <button class="xp-start-btn" (click)="toggleStart.emit()">
     <img src="windows-xp.png" alt="Windows Logo" class="xp-start-logo" />
     <span class="xp-start-text">
       {{ langService.currentLang() === 'es' ? 'INICIO' : 'START' }}

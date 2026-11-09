@@ -39,7 +39,7 @@
             type="text"
             class="main-search-input"
             [(ngModel)]="currentSearch"
-            (input)="onInputChange()"
+            (ngModelChange)="onSearchChange($event)"
             (keyup.enter)="executeSearch()"
             placeholder="{{
               langService.currentLang() === 'es'
@@ -50,7 +50,9 @@
           />
           <!-- Botón de limpiar "X" -->
           @if (currentSearch.length > 0) {
-            <span class="clear-icon" (click)="currentSearch = ''; onInputChange()">✕</span>
+            <div class="clear-btn-container" (click)="clearSearch()">
+              <span>✕</span>
+            </div>
           }
         </div>
 
@@ -89,15 +91,15 @@
           type="text"
           class="compact-search-input"
           [(ngModel)]="currentSearch"
-          (input)="onInputChange()"
+          (ngModelChange)="onSearchChange($event)"
           (keyup.enter)="executeSearch()"
         />
 
         <!-- Botón de limpiar "X" en modo compacto -->
         @if (currentSearch.length > 0) {
-          <span class="clear-icon compact-clear" (click)="currentSearch = ''; onInputChange()"
-            >✕</span
-          >
+          <div class="clear-btn-container" (click)="clearSearch()">
+            <span>✕</span>
+          </div>
         }
 
         <button class="compact-search-btn" (click)="executeSearch()">🔍</button>
@@ -105,7 +107,7 @@
         @if (showSuggestions) {
           <ul class="suggestions-dropdown compact-dropdown">
             @for (suggestion of matchBar; track suggestion) {
-              <li (click)="selectSuggestion(suggestion)">⚡ {{ suggestion }}</li>
+              <li (click)="selectSuggestion(suggestion)">{{ suggestion }}</li>
             }
           </ul>
         }

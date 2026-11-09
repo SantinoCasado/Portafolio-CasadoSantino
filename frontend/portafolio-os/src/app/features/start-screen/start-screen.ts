@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from '../../utilities/device-detector';
 import { LanguageService } from '../../services/language.service';
@@ -18,13 +18,19 @@ export class StartScreen implements OnInit {
   isMobile = signal(false);
   showMobileModal = signal(false);
   showLangModal = signal(false);
+  selectedUserName = '';
+  selectedUserAvatar = '';
+
+  @Output() login = new EventEmitter<void>();
 
   ngOnInit() {
     // Detecta si es movil al cargar la pantalla
     this.isMobile.set(this.deviceDetector.isMobileDevice());
   }
 
-  LogIn() {
+  LogIn(name: string, avatarUrl: string) {
+    this.selectedUserName = name;
+    this.selectedUserAvatar = avatarUrl;
     // Si es movil y el modal AÚN NO se mostró, lo muestro y freno el logueo
     if (this.isMobile() && !this.showMobileModal()) {
       this.showMobileModal.set(true);
@@ -53,6 +59,9 @@ export class StartScreen implements OnInit {
   private proceedToDesktop() {
     // Entrega la llave del Guard final y lo mandamos al escritorio
     sessionStorage.setItem('userLogged', 'true');
+    // el nombre y la foto en la sesión
+    sessionStorage.setItem('userName', this.selectedUserName);
+    sessionStorage.setItem('userAvatar', this.selectedUserAvatar);
     this.router.navigate(['/desktop']);
   }
 }

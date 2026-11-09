@@ -38,7 +38,7 @@
             {{ langService.currentLang() === 'es' ? 'Iniciar sesión' : 'Log in' }}
           </span>
         </div>
-        <button class="xp-arrow-btn" (click)="LogIn()">➔</button>
+        <button class="xp-arrow-btn" (click)="LogIn('Santino Casado', 'plane-user.jpg')">➔</button>
       </div>
 
       <!-- Tarjeta 2: Usuario Anónimo -->
@@ -52,7 +52,17 @@
             {{ langService.currentLang() === 'es' ? 'Iniciar sesión' : 'Log in' }}
           </span>
         </div>
-        <button class="xp-arrow-btn" (click)="LogIn()">➔</button>
+        <button
+          class="xp-arrow-btn"
+          (click)="
+            LogIn(
+              langService.currentLang() === 'es' ? 'Usuario Anónimo' : 'Anonymous User',
+              'flower-user.jpg'
+            )
+          "
+        >
+          ➔
+        </button>
       </div>
     </div>
   </div>

@@ -37,29 +37,34 @@ export class GoogleProyects{
     this.buildDictionary();
   }
 
-  private buildDictionary(){
-    const keyWordsSet = new Set<string>();  // Set por default guarda datos UNICOS
+  private buildDictionary(): void {
+    const keyWordsSet = new Set<string>();
 
-    this.projects.forEach(project =>{
-      keyWordsSet.add(project.type);
-      project.technologies.forEach(tech => keyWordsSet.add(tech));
-    })
+    this.projects.forEach(project => {
+      if (project.type) keyWordsSet.add(project.type);
+      if (project.technologies) {
+        project.technologies.forEach(tech => keyWordsSet.add(tech));
+      }
+    });
+
+    this.dictionary = Array.from(keyWordsSet);
   }
 
-  // Se ejecuta por cada tecla que apreta el usuario
-  onInputChange(): void {
-    const term = this.currentSearch.trim().toLowerCase();
+  onSearchChange(newValue: string): void {
+    this.currentSearch = newValue;
+    const term = newValue.toLowerCase();
 
-    if (!term) {
+    if (!term.trim()) {
       this.matchBar = [];
       this.showSuggestions = false;
       return;
     }
 
+    // Separa palabras por espacio manteniendo la última en edición
     const terms = term.split(' ');
     const lastTerm = terms[terms.length - 1];
 
-    if (lastTerm) {
+    if (lastTerm.trim() !== '') {
       this.matchBar = this.dictionary.filter(item => 
         item.toLowerCase().includes(lastTerm)
       );
@@ -67,6 +72,16 @@ export class GoogleProyects{
     } else {
       this.matchBar = [];
       this.showSuggestions = false;
+    }
+  }
+
+  // Limpia el buscador al presionar el botón "X"
+  clearSearch(): void {
+    this.currentSearch = '';
+    this.matchBar = [];
+    this.showSuggestions = false;
+    if (this.hasSearched) {
+      this.executeSearch();
     }
   }
   
