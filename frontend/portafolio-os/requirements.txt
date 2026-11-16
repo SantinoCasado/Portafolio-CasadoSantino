@@ -1,3 +1,0 @@
-@angular/cli
-7.css
-angular-cli-ghpages
