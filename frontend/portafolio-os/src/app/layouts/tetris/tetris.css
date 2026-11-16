@@ -1,0 +1,249 @@
+.tetris-window {
+  position: absolute;
+  top: 60px;
+  left: 240px;
+  background-color: #c0c0c0;
+  border: 3px solid #0055e5;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Tahoma, Arial, sans-serif;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  z-index: 56;
+  user-select: none;
+}
+
+.tetris-window.maximized {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: calc(100vh - 40px) !important;
+  transform: none !important;
+  border-radius: 0;
+  z-index: 999;
+}
+
+.xp-title-bar {
+  background: linear-gradient(
+    180deg,
+    #0058e6 0%,
+    #3a93ff 8%,
+    #288eff 40%,
+    #127dff 88%,
+    #036bfe 100%
+  );
+  padding: 3px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: grab;
+}
+.xp-title-bar:active {
+  cursor: grabbing;
+}
+
+.tetris-container {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  flex-grow: 1;
+}
+
+.tetris-window.maximized .tetris-container {
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Tablero con borde hundido 3D */
+.tetris-board-wrapper {
+  position: relative;
+  border-top: 3px solid #808080;
+  border-left: 3px solid #808080;
+  border-right: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  background-color: #111111;
+  display: flex;
+  flex-direction: column;
+}
+
+.tetris-board {
+  display: flex;
+  flex-direction: column;
+}
+
+.tetris-row {
+  display: flex;
+}
+
+.tetris-cell {
+  width: 22px;
+  height: 22px;
+  box-sizing: border-box;
+  border: 1px solid #1e1e1e;
+}
+
+.tetris-window.maximized .tetris-cell {
+  width: clamp(24px, 3.6vh, 34px);
+  height: clamp(24px, 3.6vh, 34px);
+}
+
+/* Relieve clásico en los bloques */
+.tetris-cell.filled,
+.next-cell.filled {
+  border-top: 2px solid rgba(255, 255, 255, 0.75);
+  border-left: 2px solid rgba(255, 255, 255, 0.75);
+  border-right: 2px solid rgba(0, 0, 0, 0.45);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.45);
+}
+
+/* Silueta fantasma de aterrizaje */
+.tetris-cell.ghost {
+  border: 1px dashed rgba(255, 255, 255, 0.45);
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Piso metálico diferenciado del fondo negro */
+.tetris-floor-bar {
+  height: 10px;
+  width: 100%;
+  background: repeating-linear-gradient(45deg, #4a7ac9, #4a7ac9 6px, #285299 6px, #285299 12px);
+  border-top: 2px solid #95bcee;
+  box-sizing: border-box;
+}
+
+/* Overlays de estado */
+.tetris-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.82);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  gap: 12px;
+  padding: 12px;
+  text-align: center;
+  z-index: 5;
+}
+
+.tetris-overlay h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #ffeb3b;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #0055e5;
+}
+
+.tetris-overlay p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* Panel Lateral */
+.tetris-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 135px;
+  gap: 8px;
+}
+
+.tetris-panel-box {
+  padding: 8px;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.panel-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #003399;
+}
+
+.digital-val {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #000000;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: right;
+  padding: 2px 6px;
+  margin-bottom: 4px;
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+/* Grilla Siguiente Pieza */
+.next-grid {
+  background-color: #111111;
+  border: 2px solid #808080;
+  padding: 4px;
+}
+
+.next-row {
+  display: flex;
+}
+
+.next-cell {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border: 1px solid #1e1e1e;
+}
+
+.controls-info {
+  align-items: flex-start;
+  font-size: 11px;
+  color: #222;
+}
+.controls-info p {
+  margin: 1px 0;
+}
+
+.sidebar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.xp-classic-btn {
+  background: linear-gradient(180deg, #ffffff 0%, #ece9d8 100%);
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  padding: 5px 8px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000000;
+  cursor: pointer;
+  text-align: center;
+}
+.xp-classic-btn:hover:not(:disabled) {
+  background: #316ac5;
+  color: #ffffff;
+}
+.xp-classic-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

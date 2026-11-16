@@ -66,6 +66,14 @@
     </app-google-proyects>
   }
 
+  @if (isAppOpen('minesweeper') && !isAppMinimized('minesweeper')) {
+    <app-minesweeper (minimize)="minimizeApp('minesweeper')" (close)="closeApp('minesweeper')">
+    </app-minesweeper>
+  }
+  @if (isAppOpen('tetris') && !isAppMinimized('tetris')) {
+    <app-tetris (minimize)="minimizeApp('tetris')" (close)="closeApp('tetris')"> </app-tetris>
+  }
+
   <!-- BARRA DE TAREAS -->
   <app-task-bar
     [activeApps]="runningApps"

@@ -133,5 +133,35 @@
         "type": "Shell",
         "repoUrl": "https://github.com/SantinoCasado/TP_AySO_Integral_ILoveLinux.git",
         "liveUrl": ""
+    },
+    {
+        "id": "the-python-mega-course",
+        "title": {
+            "es": "Mega Curso de Python",
+            "en": "The Python Mega Course"
+        },
+        "description": {
+            "es": "The Python Mega Course fue un curso que hice en la plataforma de github. Durante 33hs de curso pude aprender muchas de las posibilidades que python te presenta, desde desarrollo web, bases de datos, visualización de datos, apis y muchas otras librerías",
+            "en": "The Python Mega Course was a course I took on the GitHub platform. During 33 hours of instruction, I was able to learn many of the possibilities that Python offers, from web development, databases, data visualization, APIs, and many other libraries."
+        },
+        "technologies": ["Python", "Jupyter", "Pandas", "Matplotlib", "Seaborn", "Flask", "SQLite", "HTML", "CSS", "JavaScript", "django", "Bootstrap"],
+        "type": ["Online Course", "Web Page", "Desktop App", "Data Analysis", "Data Visualization", "Database Management"],
+        "repoUrl": "https://github.com/SantinoCasado/The-Python-Mega-Course.git",
+        "liveUrl": ""
+    },
+    {
+        "id": "python-excel-course",
+        "title": {
+            "es": "Manipulacion y Analisis de Datos con Python, Excel y Word",
+            "en": "Manipulation and Analysis of Data with Python, Excel and Word"
+        },
+        "description": {
+            "es": "El objetivo de este curso fue aprender como Python puede interactuar con archivos del tipo Excel y Word para la generación de reportes a través del análisis de datos.",
+            "en": "The objective of this course was to learn how Python can interact with Excel and Word files for generating reports through data analysis."
+        },
+        "technologies": ["Python", "Jupyter", "Pandas", "Matplotlib", "Word", "Excel"],
+        "type": ["Online Course", "Data Analysis", "Data Visualization"],
+        "repoUrl": "https://github.com/SantinoCasado/Python-Excel-Course.git",
+        "liveUrl": ""
     }
 ]

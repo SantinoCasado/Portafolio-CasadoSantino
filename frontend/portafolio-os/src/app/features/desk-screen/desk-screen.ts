@@ -9,11 +9,13 @@ import { AboutMe } from '../../layouts/about-me/about-me';
 import { Contact } from '../../layouts/contact/contact';
 import { Curriculum } from '../../layouts/curriculum/curriculum';
 import { GoogleProyects } from '../../layouts/google-proyects/google-proyects';
+import { Minesweeper } from '../../layouts/minesweeper/minesweeper';
+import { Tetris } from '../../layouts/tetris/tetris';
 
 @Component({
   selector: 'app-desk-screen',
   standalone: true,
-  imports: [TaskBar, StackAdm, CdkDrag, CdkDropList, CdkDropListGroup, AboutMe, Contact, Curriculum,  GoogleProyects], 
+  imports: [TaskBar, StackAdm, CdkDrag, CdkDropList, CdkDropListGroup, AboutMe, Contact, Curriculum,  GoogleProyects, Minesweeper, Tetris], 
   templateUrl: './desk-screen.html',
   styleUrl: './desk-screen.css',
 })
@@ -175,7 +177,7 @@ export class DeskScreen implements OnInit {
       this.runningApps.push({
         id: 'contact',
         title: { es: 'Contacto', en: 'Contact' }, 
-        icon: 'assets/Phone.ico', // El icono que le pusiste a contacto en tu desktopGrid
+        icon: 'assets/Phone.ico', 
         isMinimized: false
       });
     } else if (appId === 'cv') {
@@ -185,11 +187,25 @@ export class DeskScreen implements OnInit {
         icon: 'assets/File.ico',
         isMinimized: false
       });
-    } else if (appId === 'projects') { // <-- AGREGA ESTE BLOQUE
+    } else if (appId === 'projects') { 
       this.runningApps.push({
         id: 'projects',
         title: { es: 'Buscador de Proyectos', en: 'Projects Search' },
-        icon: 'assets/My Network Places.ico', // El ícono que le pusiste en myIcons
+        icon: 'assets/My Network Places.ico', 
+        isMinimized: false
+      });
+    } else if (appId === 'minesweeper') { 
+      this.runningApps.push({
+        id: 'minesweeper',
+        title: { es: 'Busca Minas', en: 'Minesweeper' },
+        icon: 'public/Minesweeper.ico', 
+        isMinimized: false
+      });
+    } else if (appId === 'tetris') {
+      this.runningApps.push({
+        id: 'tetris',
+        title: { es: 'Tetris', en: 'Tetris' },
+        icon: 'public/Game Controller.ico', 
         isMinimized: false
       });
     }

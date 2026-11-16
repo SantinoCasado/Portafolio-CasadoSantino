@@ -1,0 +1,144 @@
+<div
+  class="xp-window minesweeper-window"
+  [class.maximized]="isMaximized"
+  cdkDrag
+  cdkDragBoundary=".xp-desktop-container"
+>
+  <!-- Barra de Título XP -->
+  <div class="xp-title-bar" cdkDragHandle>
+    <div class="xp-title-text">
+      💣 {{ langService.currentLang() === 'es' ? 'Buscaminas' : 'Minesweeper' }}
+    </div>
+    <div class="xp-title-buttons">
+      <button class="xp-btn-min" (click)="onMinimize()">_</button>
+      <button class="xp-btn-max" (click)="toggleMaximize()">□</button>
+      <button class="xp-btn-close" (click)="onClose()">X</button>
+    </div>
+  </div>
+
+  <!-- Cuerpo clásico gris con bordes 3D -->
+  <div class="ms-container">
+    <!-- Cabecera: Contador de Minas - Carita + Reinicio/Dificultad - Reloj -->
+    <div class="ms-header">
+      <div class="ms-digital-counter">{{ formatCounter(totalMines - flagsPlaced) }}</div>
+
+      <div class="ms-center-controls">
+        <!-- Carita: reinicia la partida actual -->
+        <button
+          class="ms-face-btn"
+          (click)="resetGame()"
+          [title]="langService.currentLang() === 'es' ? 'Reiniciar partida' : 'Restart game'"
+        >
+          @switch (faceState) {
+            @case ('smile') {
+              🙂
+            }
+            @case ('ooh') {
+              😮
+            }
+            @case ('dead') {
+              😵
+            }
+            @case ('winner') {
+              🤩
+            }
+          }
+        </button>
+
+        <!-- Flecha enroscada: abre el menú de selección de dificultad -->
+        <button
+          class="ms-face-btn ms-diff-btn"
+          (click)="openDifficultySelector()"
+          [title]="langService.currentLang() === 'es' ? 'Cambiar dificultad' : 'Change difficulty'"
+        >
+          🔄
+        </button>
+      </div>
+
+      <div class="ms-digital-counter">{{ formatCounter(timer) }}</div>
+    </div>
+
+    <!-- Banner de Victoria -->
+    @if (gameWon) {
+      <div class="ms-winner-banner">
+        🏆
+        {{
+          langService.currentLang() === 'es'
+            ? '¡WINNER! Tiempo: ' + timer + 's'
+            : 'WINNER! Time: ' + timer + 's'
+        }}
+        🏆
+      </div>
+    }
+
+    <!-- Área del Tablero + Overlay de Selección de Dificultad -->
+    <div class="ms-board-wrapper">
+      @if (showDifficultyMenu) {
+        <div class="ms-difficulty-overlay">
+          <div class="ms-diff-box">
+            <h4>
+              {{
+                langService.currentLang() === 'es' ? 'Seleccionar Dificultad' : 'Select Difficulty'
+              }}
+            </h4>
+
+            <button class="xp-classic-btn" (click)="selectDifficulty('easy')">
+              🟢
+              {{
+                langService.currentLang() === 'es'
+                  ? 'Fácil (9x9 - 10 minas)'
+                  : 'Easy (9x9 - 10 mines)'
+              }}
+            </button>
+
+            <button class="xp-classic-btn" (click)="selectDifficulty('medium')">
+              🟡
+              {{
+                langService.currentLang() === 'es'
+                  ? 'Medio (14x14 - 30 minas)'
+                  : 'Medium (14x14 - 30 mines)'
+              }}
+            </button>
+
+            <button class="xp-classic-btn" (click)="selectDifficulty('hard')">
+              🔴
+              {{
+                langService.currentLang() === 'es'
+                  ? 'Difícil (16x24 - 65 minas)'
+                  : 'Hard (16x24 - 65 mines)'
+              }}
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- Tablero -->
+      <div class="ms-board" (mousedown)="onMouseDown()" (mouseup)="onMouseUp()">
+        @for (row of board; track $index) {
+          <div class="ms-row">
+            @for (cell of row; track cell.col) {
+              <div
+                class="ms-cell"
+                [class.revealed]="cell.isRevealed"
+                [class.mine-hit]="cell.isRevealed && cell.isMine"
+                [attr.data-num]="cell.isRevealed && !cell.isMine ? cell.neighborMines : null"
+                (click)="revealCell(cell)"
+                (contextmenu)="toggleFlag($event, cell)"
+              >
+                @if (cell.isRevealed) {
+                  @if (cell.isMine) {
+                    💣
+                  } @else if (cell.neighborMines > 0) {
+                    {{ cell.neighborMines }}
+                  }
+                } @else if (cell.isFlagged) {
+                  🚩
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,275 @@
+.minesweeper-window {
+  position: absolute;
+  top: 70px;
+  left: 180px;
+  background-color: #c0c0c0;
+  border: 3px solid #0055e5;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Tahoma, Arial, sans-serif;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  z-index: 55;
+  user-select: none;
+}
+
+/* Modo Maximizado */
+.minesweeper-window.maximized {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: calc(100vh - 40px) !important;
+  transform: none !important;
+  border-radius: 0;
+  z-index: 999;
+}
+
+.xp-title-bar {
+  background: linear-gradient(
+    180deg,
+    #0058e6 0%,
+    #3a93ff 8%,
+    #288eff 40%,
+    #127dff 88%,
+    #036bfe 100%
+  );
+  padding: 3px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: grab;
+}
+.xp-title-bar:active {
+  cursor: grabbing;
+}
+
+.ms-container {
+  padding: 8px;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.minesweeper-window.maximized .ms-container {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Cabecera con efecto hundido */
+.ms-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.minesweeper-window.maximized .ms-header {
+  max-width: 720px;
+}
+
+.ms-center-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.ms-digital-counter {
+  background-color: #000000;
+  color: #ff0000;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 22px;
+  padding: 2px 6px;
+  letter-spacing: 2px;
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+.ms-face-btn {
+  width: 34px;
+  height: 34px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  cursor: pointer;
+}
+.ms-face-btn:active {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* Cartel Winner */
+.ms-winner-banner {
+  background: linear-gradient(90deg, #0058e6, #288eff, #0058e6);
+  color: #ffeb3b;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  padding: 5px 10px;
+  margin-bottom: 8px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.minesweeper-window.maximized .ms-winner-banner {
+  max-width: 720px;
+  font-size: 18px;
+}
+
+/* Contenedor del Tablero y Overlay */
+.ms-board-wrapper {
+  position: relative;
+  display: inline-block;
+  min-width: 230px;
+  min-height: 230px;
+}
+
+/* Menú de Dificultad */
+.ms-difficulty-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(192, 192, 192, 0.92);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  padding: 12px;
+}
+
+.ms-diff-box {
+  background-color: #ece9d8;
+  border: 2px solid #0055e5;
+  border-radius: 6px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 230px;
+}
+
+.ms-diff-box h4 {
+  margin: 0 0 4px 0;
+  font-size: 13px;
+  color: #003399;
+  text-align: center;
+}
+
+.xp-classic-btn {
+  background: linear-gradient(180deg, #ffffff 0%, #ece9d8 100%);
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  padding: 6px 10px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  text-align: left;
+}
+.xp-classic-btn:hover {
+  background: #316ac5;
+  color: #ffffff;
+}
+
+/* Tablero */
+.ms-board {
+  border-top: 3px solid #808080;
+  border-left: 3px solid #808080;
+  border-right: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  display: inline-block;
+}
+
+.ms-row {
+  display: flex;
+}
+
+.ms-cell {
+  width: 24px;
+  height: 24px;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  font-size: 14px;
+  font-family: 'Arial Black', sans-serif;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* Escala de celdas cuando la ventana está maximizada */
+.minesweeper-window.maximized .ms-cell {
+  width: clamp(26px, 3.6vh, 42px);
+  height: clamp(26px, 3.6vh, 42px);
+  font-size: clamp(14px, 2.2vh, 22px);
+}
+
+.ms-cell.revealed {
+  border: 1px solid #808080;
+  background-color: #c0c0c0;
+  cursor: default;
+}
+
+.ms-cell.mine-hit {
+  background-color: #ff0000;
+}
+
+.ms-cell[data-num='1'] {
+  color: #0000ff;
+}
+.ms-cell[data-num='2'] {
+  color: #008000;
+}
+.ms-cell[data-num='3'] {
+  color: #ff0000;
+}
+.ms-cell[data-num='4'] {
+  color: #000080;
+}
+.ms-cell[data-num='5'] {
+  color: #800000;
+}
+.ms-cell[data-num='6'] {
+  color: #008080;
+}
+.ms-cell[data-num='7'] {
+  color: #000000;
+}
+.ms-cell[data-num='8'] {
+  color: #808080;
+}

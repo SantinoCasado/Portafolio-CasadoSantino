@@ -1,0 +1,137 @@
+<div
+  class="xp-window tetris-window"
+  [class.maximized]="isMaximized"
+  cdkDrag
+  cdkDragBoundary=".xp-desktop-container"
+>
+  <!-- Barra de Título XP -->
+  <div class="xp-title-bar" cdkDragHandle>
+    <div class="xp-title-text">🧱 Tetris</div>
+    <div class="xp-title-buttons">
+      <button class="xp-btn-min" (click)="onMinimize()">_</button>
+      <button class="xp-btn-max" (click)="toggleMaximize()">□</button>
+      <button class="xp-btn-close" (click)="onClose()">X</button>
+    </div>
+  </div>
+
+  <!-- Contenedor Principal -->
+  <div class="tetris-container">
+    <!-- Tablero Principal -->
+    <div class="tetris-board-wrapper">
+      <div class="tetris-board">
+        @for (row of board; track $index; let r = $index) {
+          <div class="tetris-row">
+            @for (cell of row; track $index; let c = $index) {
+              <div
+                class="tetris-cell"
+                [class.filled]="getCellColor(r, c) !== null"
+                [class.ghost]="isGhostCell(r, c)"
+                [style.backgroundColor]="getCellColor(r, c) || '#111111'"
+              ></div>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Piso diferenciado claramente del fondo negro -->
+      <div class="tetris-floor-bar"></div>
+
+      <!-- Overlays de Inicio, Pausa y Game Over -->
+      @if (!hasStarted || isPaused || gameOver) {
+        <div class="tetris-overlay">
+          @if (gameOver) {
+            <h3>GAME OVER</h3>
+            <p>
+              {{ langService.currentLang() === 'es' ? 'Puntaje Final:' : 'Final Score:' }}
+              {{ score }}
+            </p>
+            <button class="xp-classic-btn" (click)="startGame()">
+              🔄 {{ langService.currentLang() === 'es' ? 'Jugar de Nuevo' : 'Play Again' }}
+            </button>
+          } @else if (isPaused) {
+            <h3>{{ langService.currentLang() === 'es' ? 'PAUSA' : 'PAUSED' }}</h3>
+            <button class="xp-classic-btn" (click)="togglePause()">
+              ▶ {{ langService.currentLang() === 'es' ? 'Continuar' : 'Resume' }}
+            </button>
+          } @else {
+            <h3>TETRIS XP</h3>
+            <button class="xp-classic-btn" (click)="startGame()">
+              ▶ {{ langService.currentLang() === 'es' ? 'Iniciar Juego' : 'Start Game' }}
+            </button>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Panel Lateral Derecho -->
+    <div class="tetris-sidebar">
+      <!-- Siguiente Pieza -->
+      <div class="tetris-panel-box">
+        <span class="panel-label">{{
+          langService.currentLang() === 'es' ? 'SIGUIENTE' : 'NEXT'
+        }}</span>
+        <div class="next-grid">
+          @for (row of nextGrid; track $index) {
+            <div class="next-row">
+              @for (cell of row; track $index) {
+                <div
+                  class="next-cell"
+                  [class.filled]="cell !== null"
+                  [style.backgroundColor]="cell || '#111111'"
+                ></div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="tetris-panel-box">
+        <span class="panel-label">{{
+          langService.currentLang() === 'es' ? 'PUNTAJE' : 'SCORE'
+        }}</span>
+        <div class="digital-val">{{ score }}</div>
+
+        <span class="panel-label">{{
+          langService.currentLang() === 'es' ? 'LÍNEAS' : 'LINES'
+        }}</span>
+        <div class="digital-val">{{ lines }}</div>
+
+        <span class="panel-label">{{
+          langService.currentLang() === 'es' ? 'NIVEL' : 'LEVEL'
+        }}</span>
+        <div class="digital-val">{{ level }}</div>
+      </div>
+
+      <!-- Controles en pantalla y teclado -->
+      <div class="tetris-panel-box controls-info">
+        <span class="panel-label">{{
+          langService.currentLang() === 'es' ? 'CONTROLES' : 'CONTROLS'
+        }}</span>
+        <p>⬅️ ➡️ : {{ langService.currentLang() === 'es' ? 'Mover' : 'Move' }}</p>
+        <p>⬆️ : {{ langService.currentLang() === 'es' ? 'Rotar' : 'Rotate' }}</p>
+        <p>⬇️ : {{ langService.currentLang() === 'es' ? 'Bajar' : 'Drop' }}</p>
+        <p>Space : {{ langService.currentLang() === 'es' ? 'Caída rápida' : 'Hard drop' }}</p>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="sidebar-actions">
+        <button class="xp-classic-btn" (click)="togglePause()" [disabled]="!hasStarted || gameOver">
+          ⏸
+          {{
+            isPaused
+              ? langService.currentLang() === 'es'
+                ? 'Reanudar'
+                : 'Resume'
+              : langService.currentLang() === 'es'
+                ? 'Pausar'
+                : 'Pause'
+          }}
+        </button>
+        <button class="xp-classic-btn" (click)="startGame()">
+          🔄 {{ langService.currentLang() === 'es' ? 'Reiniciar' : 'Restart' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
